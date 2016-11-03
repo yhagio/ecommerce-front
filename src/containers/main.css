@@ -1,4 +1,38 @@
 .main {
+  max-width: 1000px;
   padding: 10px;
-  font-family: sans-serif;
+  margin: auto;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+.right {
+  float: right;
+}
+
+.navBar {
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+}
+
+.item {
+  display: inline-block;
+  margin: 1px;
+  padding: 10px;
+  text-decoration: none;
+  background-color: cadetblue;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.item:hover {
+  background-color: dodgerblue;
+  /*transition: all .5s ease-in;*/
+}
+
+.item:active {
+  background-color: mediumpurple;
 }
