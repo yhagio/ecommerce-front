@@ -26,6 +26,7 @@
   height: 150px;
   display: block;
   margin: auto;
+  background: #00dddd;
 }
 
 @media screen and (max-width: 620px) {

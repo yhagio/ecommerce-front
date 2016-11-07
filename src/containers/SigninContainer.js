@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import Signin from '../components/Signin';
 
 class SigninContainer extends Component {
   render() {
     return (
-      <div>Hello Signin</div>
+      <Signin />
     )
   }
 }

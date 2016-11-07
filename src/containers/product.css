@@ -17,6 +17,7 @@
 .productImageLarge {
   width: 250px;
   height: 320px;
+  background: #00dddd;
 }
 
 .details {
@@ -47,6 +48,7 @@
 
 
 .productReviews {
+  margin-top: 20px;
   padding: 5px;
   /*box-shadow: 0 0 10px #aaa;*/
 }

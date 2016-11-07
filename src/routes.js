@@ -8,6 +8,7 @@ import AccountContainer from './containers/AccountContainer';
 import SignupContainer from './containers/SignupContainer';
 import SigninContainer from './containers/SigninContainer';
 import CartContainer from './containers/CartContainer';
+import Signout from './components/Signout';
 
 export default function getRoutes (history) {
   return (
@@ -19,6 +20,7 @@ export default function getRoutes (history) {
         <Route path='/account' component={ AccountContainer } />
         <Route path='/signup' component={ SignupContainer } />
         <Route path='/signin' component={ SigninContainer } />
+        <Route path='/signout' component={ Signout } />
         <Route path='*' component={ ProductsContainer } />
       </Route>
     </Router>

@@ -27,6 +27,7 @@
 .cart-product-image {
   width: inherit;
   height: inherit;
+  background: #00dddd;
 }
 
 .remove-button {

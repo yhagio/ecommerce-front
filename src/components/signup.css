@@ -1,0 +1,36 @@
+.authForm {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 350px;
+  margin: auto; 
+}
+
+.labeled {
+  display: block;
+  font-size: 1.1em;
+  margin: 30px 0 5px 10px;
+}
+
+.formInput {
+  font-size: 1.1em;
+  width: 300px;
+  height: 45px;
+  padding: 0 0 0 3px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.formButton {
+  margin: 0 0 0 10px;
+  height: 45px;
+  width: 100px;
+  font-size: 1.1em;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+}
+
+.signupButton {
+  background-color: #32CD32;
+}
