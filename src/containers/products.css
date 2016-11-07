@@ -17,7 +17,8 @@
   padding: 2px 10px;
   max-width: 210px;
   display: inline-block;
-
+  text-decoration: none;
+  color: #555;
   /*max-width: 211.5px;*/
 }
 
