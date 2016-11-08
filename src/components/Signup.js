@@ -40,6 +40,32 @@ export default function Signup () {
       </label>
       <span className=''></span>
 
+      <label className='labeled'>First Name<br />
+        <input
+          id='signUpFirstName'
+          name='signUpFirstName'
+          className='formInput'
+          type='text'
+          placeholder='First Name'
+          onChange={ (e) => console.log(e)}
+          onBlur={ (e) => console.log(e)}
+          required={ true } />
+      </label>
+      <span className=''></span>
+
+      <label className='labeled'>Last Name<br />
+        <input
+          id='signUpLastName'
+          name='signUpLastName'
+          className='formInput'
+          type='text'
+          placeholder='Last Name'
+          onChange={ (e) => console.log(e)}
+          onBlur={ (e) => console.log(e)}
+          required={ true } />
+      </label>
+      <span className=''></span>
+
       <label className='labeled'>Password<br />
         <input
           id='signUpPassword'

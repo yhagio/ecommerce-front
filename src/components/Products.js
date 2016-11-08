@@ -1,23 +1,25 @@
 import React, { PropTypes } from 'react';
 
-export default function Products () {
-  let products = [];
-  for (let i = 0; i < 51; i++) {
-    products.push(
-      <a href="products/1" key={i} className="productItem">
+export default function Products (props) {
+  let productList = [];
+  props.products.forEach((product, x) => {
+    productList.push(
+      <a href="products/1" key={ x } className="productItem">
         <li>
-          <h4 className="productTitle">Title</h4>
+          <h4 className="productTitle">{ product.get('name') }</h4>
           <img src="" alt="product" className="productImage" />
-          <p className="price">Price: <span>$12.50</span></p>
+          <p className="price">Price: <span>{ product.get('price') }</span></p>
         </li>
-      </a>
-    )
-  }
+      </a>    
+    );
+  })
 
-  return (
+  return props.isFetching
+  ? <h3>Fetching ...</h3>
+  : (
     <div className="productsContainer">
       <ul className="productList">
-        {products}
+        { productList }
       </ul>
     </div>
   )
