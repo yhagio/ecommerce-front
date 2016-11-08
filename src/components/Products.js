@@ -1,30 +1,35 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
+import { List } from 'immutable';
 
 export default function Products (props) {
+  // console.log(props.products.size)
   let productList = [];
-  props.products.forEach((product, x) => {
+  props.products.forEach((product) => {
     productList.push(
-      <a href="products/1" key={ x } className="productItem">
+      <Link to={ `products/${ product.get('id') }` } key={ product.get('id') } className="productItem">
         <li>
           <h4 className="productTitle">{ product.get('name') }</h4>
           <img src="" alt="product" className="productImage" />
           <p className="price">Price: <span>{ product.get('price') }</span></p>
         </li>
-      </a>    
+      </Link>    
     );
   })
 
   return props.isFetching
   ? <h3>Fetching ...</h3>
-  : (
-    <div className="productsContainer">
-      <ul className="productList">
-        { productList }
-      </ul>
-    </div>
-  )
+  : props.products.size === 0 || props.error.length > 0
+    ? <h3>No Products Found</h3>
+    : (<div className="productsContainer">
+         <ul className="productList">
+           { productList }
+         </ul>
+       </div>)
 }
 
 Products.propTypes = {
-
+  products: PropTypes.instanceOf(List),
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired
 };

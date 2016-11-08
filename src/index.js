@@ -12,9 +12,11 @@ import thunk from 'redux-thunk';
 
 import getRoutes from './routes';
 import products from './redux/Products';
+import product from './redux/Product';
 
 const store = createStore(combineReducers({
-  products
+  products,
+  product,
 }), compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : (f) => f

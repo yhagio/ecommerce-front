@@ -24,7 +24,9 @@ class ProductsContainer extends Component {
 
 ProductsContainer.propTypes = {
   products: PropTypes.instanceOf(List),
-  fetchProducts: PropTypes.func.isRequired
+  fetchProducts: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired
 }
 
 function mapStateToProps({ products }) {
