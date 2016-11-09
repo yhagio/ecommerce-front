@@ -22,13 +22,6 @@ class SignupContainer extends Component {
         emailError={ this.props.emailError }
         passwordError={ this.props.passwordError }
 
-        /*
-        warnFirstNameError={ this.props.warnFirstNameError }
-        warnLastNameError={ this.props.warnLastNameError }
-        warnEmailError={ this.props.warnEmailError }
-        warnPasswordError={ this.props.warnPasswordError }
-        */
-
         updateEmail={ this.props.updateEmail }
         updateFirstName={ this.props.updateFirstName }
         updateLastName={ this.props.updateLastName }
@@ -57,11 +50,6 @@ SignupContainer.propTypes = {
   lastNameError: string.isRequired,
   emailError: string.isRequired,
   passwordError: string.isRequired,
-
-  // warnFirstNameError: func.isRequired,
-  // warnLastNameError: func.isRequired,
-  // warnEmailError: func.isRequired,
-  // warnPasswordError: func.isRequired,
 
   updateEmail: func.isRequired,
   updateFirstName: func.isRequired,

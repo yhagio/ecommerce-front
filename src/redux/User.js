@@ -158,10 +158,10 @@ export function signinUser ({email, password}) {
         // If request is incorrect
         // Show user the error
         let error;
-        if (err.data) {
-          error = err.data.error ? err.data.error : err.data;
+        if (err.response && err.response.data && err.response.data.error) {
+          error = err.response.data.error;
         }
-        dispatch(authenticationError(error));
+        dispatch(authenticationError(error|| 'Internal error occured.'));
       });
   };
 }

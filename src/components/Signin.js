@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import './signin.css';
 
 export function SubmitButton (props) {
   if (
@@ -17,58 +16,84 @@ export function SubmitButton (props) {
     return (
       <button
         action='submit'
-        className='formButton signinButton'
+        className='formButton signupButton'
         role='button'>Sign in</button>
     )
   }
 }
 
-export default function Signin () {
+export default function Signin (props) {
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    return props.signinUser({
+      email: props.email,
+      password: props.password
+    });
+  }
+
   return (
-    <form onSubmit='' className='authForm'>
-      <label className='labeled'>Email<br />
+    <form onSubmit={ handleFormSubmit } className='authForm'>
+      <label className='labeled'>
+        <span className="labeltitle">Email</span><br />
+        <span className='errorMessage'>{ props.emailError }</span>
         <input
-          id='signUpEmail'
-          name='signUpEmail'
+          id='signInEmail'
+          name='signInEmail'
           className='formInput'
           type='email'
-          placeholder='Your Email'
-          onChange={ (e) => console.log(e)}
-          onBlur={ (e) => console.log(e)}
+          placeholder='Email ...'
+          onChange={ (e) => props.updateEmail(e.target.value)}
+          onBlur={ (e) => props.validateEmail(e.target.value) }
           required={ true }
           autoFocus={ true } />
       </label>
-      <span className=''></span>
 
-      <label className='labeled'>Password<br />
+      <label className='labeled'>
+        <span className="labeltitle">Password</span><br />
+        <span className='errorMessage'>{ props.passwordError }</span>
         <input
-          id='signUpPassword'
-          name='signUpPassword'
+          id='signInPassword'
+          name='signInPassword'
           className='formInput'
           type='password'
-          placeholder='Your Password'
-          onChange={ (e) => console.log(e)}
-          onBlur={ (e) => console.log(e)}
+          placeholder='Secure Password ...'
+          onChange={ (e) => props.updatePassword(e.target.value)}
+          onBlur={ (e) => props.validatePassword(e.target.value) }
           required={ true } />
       </label>
-      <span className=''></span>
 
       <br />
       <SubmitButton
-        emailError={ '' }
-        passwordError={ '' } /><br />
+        emailError={ props.emailError }
+        passwordError={ props.passwordError } /><br />
 
-      <span className=''></span>
-      <br />
+      <p className='formError'>{ props.error }</p>
 
     </form>
   );
 }
 
-Signin.propTypes = {
+const { func, string } = PropTypes;
 
-};
+Signin.propTypes = {
+  signinUser: func.isRequired,
+  error: string.isRequired,
+
+  email: string.isRequired,
+  password: string.isRequired,
+
+  emailError: string.isRequired,
+  passwordError: string.isRequired,
+
+  updateEmail: func.isRequired,
+  updatePassword: func.isRequired,
+  
+  validateEmail: func.isRequired,
+  validatePassword: func.isRequired,
+}
 
 SubmitButton.propTypes = {
-
-}
+  emailError: string.isRequired,
+  passwordError: string.isRequired,
+};

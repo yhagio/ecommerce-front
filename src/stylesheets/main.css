@@ -6,10 +6,21 @@
   margin: auto; 
 }
 
+.errorMessage {
+  margin-left: 3px;
+  color: #ff0000;
+  font-size: 0.9em;
+}
+
 .labeled {
   display: block;
-  font-size: 1.1em;
-  margin: 30px 0 5px 10px;
+  margin: 15px 0 0 10px;
+}
+
+.labeltitle {
+  font-size: 0.9em;
+  color: #03a203;
+  margin-left: 3px;
 }
 
 .formInput {
@@ -31,6 +42,11 @@
   color: #fff;
 }
 
-.signinButton {
-  background-color: #7B68EE;
+.signupButton {
+  background-color: #32CD32;
+}
+
+.formError {
+  margin: 10px 0 0 20px;
+  color: #ff0000;
 }*/

@@ -22,6 +22,7 @@ import products from './redux/Products';
 import product from './redux/Product';
 import user from './redux/User';
 import signup from './redux/Signup';
+import signin from './redux/Signin';
 
 import { ROOT_URL } from './constants';
 import { checkIfAuthenticated, setHeaders } from './helpers/utils';
@@ -30,7 +31,8 @@ const store = createStore(combineReducers({
   products,
   product,
   user,
-  signup
+  signup,
+  signin
 }), compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : (f) => f

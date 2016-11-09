@@ -125,11 +125,6 @@ Signup.propTypes = {
   emailError: string.isRequired,
   passwordError: string.isRequired,
 
-  // warnFirstNameError: func.isRequired,
-  // warnLastNameError: func.isRequired,
-  // warnEmailError: func.isRequired,
-  // warnPasswordError: func.isRequired,
-
   updateEmail: func.isRequired,
   updateFirstName: func.isRequired,
   updateLastName: func.isRequired,
