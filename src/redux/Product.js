@@ -30,10 +30,7 @@ export function fetchProduct (id) {
   return function (dispatch) {
     dispatch(fetchingProduct());
     return axios.get(`${ROOT_URL}/api/products/${id}`)
-      .then((res) => {
-        console.log('res', res)
-        dispatch(fetchingProductSuccess(res.data))
-      })
+      .then((res) => dispatch(fetchingProductSuccess(res.data)))
       .catch((err) => dispatch(fetchingProductError(err)));
   };
 }
