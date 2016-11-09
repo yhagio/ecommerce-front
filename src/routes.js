@@ -8,7 +8,7 @@ import AccountContainer from './containers/AccountContainer';
 import SignupContainer from './containers/SignupContainer';
 import SigninContainer from './containers/SigninContainer';
 import CartContainer from './containers/CartContainer';
-import Signout from './components/Signout';
+import SignoutContainer from './containers/SignoutContainer';
 
 export default function getRoutes (checkAuthentication) {
   return (
@@ -20,7 +20,7 @@ export default function getRoutes (checkAuthentication) {
         <Route path='/account' component={ AccountContainer } onEnter={ checkAuthentication } />
         <Route path='/signup' component={ SignupContainer } />
         <Route path='/signin' component={ SigninContainer } />
-        <Route path='/signout' component={ Signout } />
+        <Route path='/signout' component={ SignoutContainer } />
         <Route path='*' component={ ProductsContainer } />
       </Route>
     </Router>

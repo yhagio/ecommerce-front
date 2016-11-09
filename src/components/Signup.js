@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import './signup.css';
+import './signup-signin.css';
 
 export function SubmitButton (props) {
   if (
@@ -19,7 +19,7 @@ export function SubmitButton (props) {
     return (
       <button
         action='submit'
-        className='formButton signupButton'
+        className='formButton authButton'
         role='button'>Sign up</button>
     )
   }
