@@ -20,14 +20,14 @@ export function updateFirstName (firstName) {
 
 export function updateLastName (lastName) {
   return {
-    type: UPDATE_FIRST_NAME,
+    type: UPDATE_LAST_NAME,
     lastName
   };
 }
 
 export function updateEmail (email) {
   return {
-    type: UPDATE_LAST_NAME,
+    type: UPDATE_EMAIL,
     email
   };
 }
@@ -40,32 +40,72 @@ export function updatePassword (password) {
 }
 
 // Form Error Actions
-export function warnFirstNameError () {
+export function warnFirstNameError (firstNameError) {
   return {
     type: FIRST_NAME_ERROR,
-    usernameError: 'First name is required'
+    firstNameError
   };
 }
 
-export function warnLastNameError () {
+export function warnLastNameError (lastNameError) {
   return {
     type: LAST_NAME_ERROR,
-    usernameError: 'Last name is required'
+    lastNameError
   };
 }
 
-export function warnEmailError () {
+export function warnEmailError (emailError) {
   return {
     type: EMAIL_ERROR,
-    emailError: 'Email is required'
+    emailError
   };
 }
 
-export function warnPasswordError () {
+export function warnPasswordError (passwordError) {
   return {
     type: PASSWORD_ERROR,
-    passwordError: 'Password is required'
+    passwordError
   };
+}
+
+export function validateEmail (input) {
+  return function(dispatch) {
+    const email = input.trim();
+
+    if (email.length < 4) return dispatch(warnEmailError('Email is required'));
+    if (email.length > 50) return dispatch(warnEmailError('Your email address is too long'));
+    if (!/.+@.+\../.test(email)) return dispatch(warnEmailError('Please enter a valid email address'));
+  }
+}
+
+export function validateFirstName (input) {
+  return function(dispatch) {
+    const firstName = input.trim();
+
+    if (firstName.length === 0) return dispatch(warnFirstNameError('First Name is required'));
+    if (firstName.length > 29) return dispatch(warnFirstNameError('First Name must be shorter than 30 characters'));
+  }
+}
+
+export function validateLastName (input) {
+  return function(dispatch) {
+    const lastName = input.trim();
+
+    if (lastName.length === 0) return dispatch(warnLastNameError('Last Name is required'));
+    if (lastName.length > 29) return dispatch(warnLastNameError('Last Name must be shorter than 30 characters'));
+  }
+}
+
+export function validatePassword (input) {
+  return function(dispatch) {
+    const password = input.trim();
+
+    if (password.length < 6) return dispatch(warnPasswordError('Password must be at least 6 characters'));
+    if (password.length > 39) return dispatch(warnPasswordError('Password must be shorter than 40 characters'));
+    if (!/[0-9]/.test(password)) return dispatch(warnPasswordError('Password must have a number'));
+    if (!/[a-z]/.test(password)) return dispatch(warnPasswordError('Password must have a lowercase alphabet'));
+    if (!/[A-Z]/.test(password)) return dispatch(warnPasswordError('Password must have a uppercase alphabet'));
+  }
 }
 
 const initialState = Map({

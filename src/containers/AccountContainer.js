@@ -17,16 +17,16 @@ class AccountContainer extends Component {
   }
 }
 
-AccountContainer.propTypes = {
+// AccountContainer.propTypes = {
 
-}
+// }
 
-function mapStateToProps() {
+// function mapStateToProps() {
 
-}
+// }
 
-function mapDispatchToProps() {
+// function mapDispatchToProps() {
   
-}
+// }
 
 export default AccountContainer;

@@ -1,15 +1,26 @@
 .authForm {
   border: 1px solid #aaa;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 10px 20px 10px;
   max-width: 350px;
   margin: auto; 
 }
 
+.errorMessage {
+  margin-left: 3px;
+  color: #ff0000;
+  font-size: 0.9em;
+}
+
 .labeled {
   display: block;
-  font-size: 1.1em;
-  margin: 30px 0 5px 10px;
+  margin: 15px 0 0 10px;
+}
+
+.labeltitle {
+  font-size: 0.9em;
+  color: #03a203;
+  margin-left: 3px;
 }
 
 .formInput {
@@ -22,7 +33,7 @@
 }
 
 .formButton {
-  margin: 0 0 0 10px;
+  margin: 20px 0 0 10px;
   height: 45px;
   width: 100px;
   font-size: 1.1em;
@@ -33,4 +44,9 @@
 
 .signupButton {
   background-color: #32CD32;
+}
+
+.formError {
+  margin: 10px 0 0 20px;
+  color: #ff0000;
 }

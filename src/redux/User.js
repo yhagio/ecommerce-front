@@ -132,7 +132,11 @@ export function signupUser ({firstName, lastName, email, password}) {
       .catch((err) => {
         // If request is incorrect
         // Show user the error
-        dispatch(authenticationError(err.data.error || err.data));
+        let error;
+        if (err.response && err.response.data && err.response.data.error) {
+          error = err.response.data.error;
+        }
+        dispatch(authenticationError(error|| 'Internal error occured.'));
       });
   };
 }

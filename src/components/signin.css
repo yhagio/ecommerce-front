@@ -1,7 +1,7 @@
-.authForm {
+/*.authForm {
   border: 1px solid #aaa;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 10px 20px 10px;
   max-width: 350px;
   margin: auto; 
 }
@@ -22,7 +22,7 @@
 }
 
 .formButton {
-  margin: 0 0 0 10px;
+  margin: 20px 0 0 10px;
   height: 45px;
   width: 100px;
   font-size: 1.1em;
@@ -33,4 +33,4 @@
 
 .signinButton {
   background-color: #7B68EE;
-}
+}*/
