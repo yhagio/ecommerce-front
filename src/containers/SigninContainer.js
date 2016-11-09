@@ -9,4 +9,12 @@ class SigninContainer extends Component {
   }
 }
 
+function mapStateToProps() {
+
+}
+
+function mapDispatchToProps() {
+  
+}
+
 export default SigninContainer;

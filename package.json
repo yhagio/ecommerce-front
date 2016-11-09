@@ -8,6 +8,7 @@
   "dependencies": {
     "axios": "^0.15.2",
     "d3": "^4.3.0",
+    "es6-promise": "^4.0.5",
     "immutable": "^3.8.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
