@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Cart from '../components/Cart';
 import './cart.css';
 
@@ -8,6 +8,10 @@ class CartContainer extends Component {
       <Cart />
     )
   }
+}
+
+CartContainer.propTypes = {
+  
 }
 
 export default CartContainer;

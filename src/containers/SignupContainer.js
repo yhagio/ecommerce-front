@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Map } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as usersActions from '../redux/User';

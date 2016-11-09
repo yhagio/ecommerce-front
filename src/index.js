@@ -25,7 +25,7 @@ import signup from './redux/Signup';
 import signin from './redux/Signin';
 
 import { ROOT_URL } from './constants';
-import { checkIfAuthenticated, setHeaders } from './helpers/utils';
+import { setHeaders } from './helpers/utils';
 
 const store = createStore(combineReducers({
   products,
@@ -50,9 +50,6 @@ if (token) {
     .then((res) => store.dispatch(fetchingUserSuccess(res.data)))
     .catch((err) => store.dispatch(fetchingUserFailure(err)));
 }
-
-// Check if the user is authenticated.
-const isAuthenticated = checkIfAuthenticated(store, token);
 
 // Check if user is authenticated before letting the user
 // access to certain routes
