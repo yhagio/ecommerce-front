@@ -62,6 +62,16 @@ export function deletefromCart (id) {
   };
 }
 
+export function payTotal (cartObject) {
+  console.log('Payment: \n', cartObject);
+  return function (dispatch) {
+    dispatch(fetchingCart());
+    return axios.post(`${ROOT_URL}/api/payment`, cartObject, setHeaders())
+      .then(res => dispatch(fetchingCartSuccess(res.data[0])))
+      .catch(err => dispatch(fetchingCartError(err)));
+  };
+}
+
 const initialState = fromJS({
   cart: [],
   error: '',

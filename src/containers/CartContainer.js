@@ -13,6 +13,7 @@ class CartContainer extends Component {
   render() {
     return (
       <Cart
+        payTotal={ this.props.payTotal }
         cart={ this.props.cart }
         isFetching={ this.props.isFetching }
         error={ this.props.error }
@@ -22,6 +23,7 @@ class CartContainer extends Component {
 }
 
 CartContainer.propTypes = {
+  payTotal: PropTypes.func.isRequired,
   fetchCart: PropTypes.func.isRequired,
   cart: PropTypes.instanceOf(List),
   isFetching: PropTypes.bool.isRequired,
