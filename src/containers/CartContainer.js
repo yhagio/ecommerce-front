@@ -15,7 +15,8 @@ class CartContainer extends Component {
       <Cart
         cart={ this.props.cart }
         isFetching={ this.props.isFetching }
-        error={ this.props.error } />
+        error={ this.props.error }
+        deletefromCart={ this.props.deletefromCart } />
     )
   }
 }
@@ -25,6 +26,7 @@ CartContainer.propTypes = {
   cart: PropTypes.instanceOf(List),
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
+  deletefromCart: PropTypes.func.isRequired,
 }
 
 function mapStateToProps({ cart }) {

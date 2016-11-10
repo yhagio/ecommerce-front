@@ -38,8 +38,8 @@ export function fetchingCartError (error) {
 export function addToCart (id) {
   return function (dispatch) {
     return axios.post(`${ROOT_URL}/api/cart`, { id }, setHeaders())
-      .then((res) => dispatch(addToCartSuccess()))
-      .catch((err) => dispatch(fetchingCartError(err)));
+      .then(res => dispatch(addToCartSuccess()))
+      .catch(err => dispatch(fetchingCartError(err)));
   };
 }
 
@@ -47,8 +47,18 @@ export function fetchCart () {
   return function (dispatch) {
     dispatch(fetchingCart());
     return axios.get(`${ROOT_URL}/api/cart`, setHeaders())
-      .then((res) => dispatch(fetchingCartSuccess(res.data[0])))
-      .catch((err) => dispatch(fetchingCartError(err)));
+      .then(res => dispatch(fetchingCartSuccess(res.data[0])))
+      .catch(err => dispatch(fetchingCartError(err)));
+  };
+}
+
+export function deletefromCart (id) {
+  console.log('Deleteing: ', id)
+  return function (dispatch) {
+    dispatch(fetchingCart());
+    return axios.delete(`${ROOT_URL}/api/cart/${id}`, setHeaders())
+      .then(res => dispatch(fetchingCartSuccess(res.data[0])))
+      .catch(err => dispatch(fetchingCartError(err)));
   };
 }
 

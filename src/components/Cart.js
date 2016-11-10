@@ -15,7 +15,9 @@ export default function Cart (props) {
         <p className="cart-el">{ item.get('name') }</p>
         <p className="cart-el">Price: ${ item.get('price') }</p>
         <div className="cart-el">
-          <button className="remove-button">Remove</button>
+          <button
+            className="remove-button"
+            onClick={ (e) => props.deletefromCart(item.get('id')) }>Remove</button>
         </div>
       </li>
     )
@@ -38,6 +40,7 @@ export default function Cart (props) {
 }
 
 Cart.propTypes = {
+  deletefromCart: PropTypes.func.isRequired,
   cart: PropTypes.instanceOf(List),
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
