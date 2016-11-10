@@ -20,6 +20,7 @@ import getRoutes from './routes';
 
 import products from './redux/Products';
 import product from './redux/Product';
+import cart from './redux/Cart';
 import user from './redux/User';
 import signup from './redux/Signup';
 import signin from './redux/Signin';
@@ -30,6 +31,7 @@ import { setHeaders } from './helpers/utils';
 const store = createStore(combineReducers({
   products,
   product,
+  cart,
   user,
   signup,
   signin

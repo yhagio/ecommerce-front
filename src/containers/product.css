@@ -30,6 +30,7 @@
 .addButton {
   width: 120px;
   height: 45px;
+  margin-bottom: 10px;
   background-color: deepskyblue;
   border: none;
   border-radius: 5px;
@@ -56,4 +57,9 @@
 .reviewItem {
   box-shadow: 0 5px 1px #aaa;
   padding: 5px 10px;
+}
+
+.addToCartMessage {
+  color: #06a906;
+  margin: 14px;
 }

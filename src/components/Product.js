@@ -30,7 +30,11 @@ export default function Product (props) {
             <p>Price: <span>${ props.product.get('price') }</span></p>
             <p>5 stars</p>
             <p>{ props.product.get('description') }</p>
-            <button className="addButton">Add to cart</button>
+            <button 
+              className="addButton"
+              onClick={ (e) => props.addToCart(props.product.get('id'))}>Add to cart</button>
+            <br />
+            <span className="addToCartMessage">{ props.message }</span>
           </div>
         </div>
         
@@ -47,5 +51,7 @@ export default function Product (props) {
 Product.propTypes = {
   product: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired
+  error: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  addToCart: PropTypes.func.isRequired
 }; 
