@@ -24,6 +24,7 @@ import cart from './redux/Cart';
 import user from './redux/User';
 import signup from './redux/Signup';
 import signin from './redux/Signin';
+import purchased from './redux/Purchased';
 
 import { ROOT_URL } from './constants';
 import { setHeaders } from './helpers/utils';
@@ -34,7 +35,8 @@ const store = createStore(combineReducers({
   cart,
   user,
   signup,
-  signin
+  signin,
+  purchased,
 }), compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : (f) => f

@@ -1,6 +1,7 @@
 /*global Stripe:true*/
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
+import './card.css';
 
 export default function Cart (props) {
   let cartList = [];
@@ -10,7 +11,7 @@ export default function Cart (props) {
   props.cart.forEach((item, i) => {
     total += item.get('price');
     purchaseList.push({
-      product_id: item.get('id'),
+      product_id: item.get('product_id'),
       product_name: item.get('name'),
       product_price: item.get('price'),
     });
@@ -57,13 +58,9 @@ export default function Cart (props) {
         input.setAttribute('name', 'stripeToken');
         input.value = token;
         form.appendChild(input);
-
-        // TODO move these to redux & get concatenated titles from cart
-        const productTitles = 'Japanese 101, Japanese 102';
         
         // Submit the form:
         // form.submit();
-        // TODO: Send from redux 
         const paymentObject = {
           token,
           purchaseList
@@ -91,53 +88,81 @@ export default function Cart (props) {
       <ul>
         { cartList }
       </ul>
+      {/* 
       <div className="right">
         <p className="">Total: ${ total }</p>
         <div className="">
           <button className="payButton">Pay</button>
         </div>
       </div>
+      */}
 
-      <form onSubmit={ submitForm } id="payment-form">
+      <form onSubmit={ submitForm } id="payment-form" className="cardForm">
         <span className="payment-errors"></span>
 
-        <div className="form-row">
+        <div className="formRow">
           <label>
-            <span>Amount</span>
+            <span>Amount Total ($)</span>
             <input
               type="number"
               id="cartTotal"
               name="cartTotal"
+              className="totalAmt cardInput"
               value={ total }
               required={ true }
               readOnly />
           </label>
         </div>
 
-        <div className="form-row">
+        <div className="formRow">
           <label>
             <span>Card Number</span>
-            <input type="text" size="20" data-stripe="number" value="4242 4242 4242 4242" />
+            <input
+              type="text"
+              className="cardInput card"
+              size="20"
+              data-stripe="number"
+              value="4242 4242 4242 4242" />
           </label>
         </div>
 
-        <div className="form-row">
+        <div className="formRow">
           <label>
             <span>Expiration (MM/YY)</span>
-            <input type="text" size="2" data-stripe="exp_month" value="12" />
+            <input
+              type="text"
+              className="cardInput exp"
+              size="2"
+              data-stripe="exp_month"
+              value="12" />
           </label>
           <span> / </span>
-          <input type="text" size="2" data-stripe="exp_year" value="19" />
+          <input
+            type="text"
+            className="cardInput exp"
+            size="2"
+            data-stripe="exp_year"
+            value="19" />
         </div>
 
-        <div className="form-row">
+        <div className="formRow">
           <label>
             <span>CVC</span>
-            <input type="text" size="4" data-stripe="cvc" value="123" />
+            <input
+              type="text"
+              className="cardInput cvc"
+              size="4"
+              data-stripe="cvc"
+              value="123" />
           </label>
         </div>
 
-        <input type="submit" className="submit" value="Submit Payment" />
+        <br />
+
+        <input
+          type="submit"
+          className="submit payButton"
+          value="Pay Now" />
       </form>
     </div>;
 }

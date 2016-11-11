@@ -12,7 +12,6 @@ SearchContainer
 - Search with title, description, category, price
 
 SignupContainer
-- 
 
 SigninContainer
 

@@ -1,0 +1,48 @@
+/* Card Form */
+.cardForm {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  max-width: 340px;
+  margin: auto;
+  padding: 10px;
+}
+
+.formRow {
+  display: block;
+  /*border: 1px solid green;*/
+  height: 40px;
+  font-size: 1em;
+  color: #444;
+  margin: 5px;
+}
+
+.cardInput {
+  height: 100%;
+  font-size: 1em;
+}
+
+.totalAmt {
+  border: none;
+  font-size: 1.1em;
+  color: dodgerblue;
+}
+
+.card {
+  width: 200px;
+  margin-left: 8px;
+}
+
+.exp {
+  margin-left: 5px;
+  width: 35px;
+}
+
+.cvc {
+  margin-left: 5px;
+  width: 50px;
+}
+
+.payButton {
+  display: block;
+  margin: auto;
+}

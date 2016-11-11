@@ -2,6 +2,7 @@ import axios from 'axios';
 import { fromJS } from 'immutable';
 import { ROOT_URL } from '../constants';
 import { setHeaders } from '../helpers/utils';
+import { browserHistory } from 'react-router';
 
 export const FETCHING_CART = 'FETCHING_CART';
 export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
@@ -53,7 +54,6 @@ export function fetchCart () {
 }
 
 export function deletefromCart (id) {
-  console.log('Deleteing: ', id)
   return function (dispatch) {
     dispatch(fetchingCart());
     return axios.delete(`${ROOT_URL}/api/cart/${id}`, setHeaders())
@@ -65,10 +65,15 @@ export function deletefromCart (id) {
 export function payTotal (cartObject) {
   console.log('Payment: \n', cartObject);
   return function (dispatch) {
-    dispatch(fetchingCart());
+    // dispatch(fetchingCart());
     return axios.post(`${ROOT_URL}/api/payment`, cartObject, setHeaders())
-      .then(res => dispatch(fetchingCartSuccess(res.data[0])))
-      .catch(err => dispatch(fetchingCartError(err)));
+      .then(res => {
+        return browserHistory.push('/account');
+      })
+      .catch(err => {
+        console.log('Error', err)
+        return;
+      });
   };
 }
 
