@@ -10,6 +10,7 @@ import SigninContainer from './containers/SigninContainer';
 import CartContainer from './containers/CartContainer';
 import SignoutContainer from './containers/SignoutContainer';
 import PurchasedProductContainer from './containers/PurchasedProductContainer';
+import ReceiptsContainer from './containers/ReceiptsContainer';
 
 export default function getRoutes (checkAuthentication) {
   return (
@@ -20,6 +21,7 @@ export default function getRoutes (checkAuthentication) {
         <Route path='/products/:id/purchased' component={ PurchasedProductContainer } onEnter={ checkAuthentication } />
         <Route path='/cart' component={ CartContainer } onEnter={ checkAuthentication } />
         <Route path='/account' component={ AccountContainer } onEnter={ checkAuthentication } />
+        <Route path='/account/receipts' component={ ReceiptsContainer } onEnter={ checkAuthentication } />
         <Route path='/signup' component={ SignupContainer } />
         <Route path='/signin' component={ SigninContainer } />
         <Route path='/signout' component={ SignoutContainer } />

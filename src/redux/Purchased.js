@@ -54,7 +54,7 @@ const initialState = Map({
   isFetching: false,
 });
 
-export default function product (state = initialState, action) {
+export default function purchased (state = initialState, action) {
   switch (action.type) {
 
     case FETCHING_PURCHASED_PRODUCT :
