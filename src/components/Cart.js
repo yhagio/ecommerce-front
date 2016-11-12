@@ -122,7 +122,7 @@ export default function Cart (props) {
               className="cardInput card"
               size="20"
               data-stripe="number"
-              value="4242 4242 4242 4242" />
+              defaultValue="4242 4242 4242 4242" />
           </label>
         </div>
 
@@ -134,7 +134,7 @@ export default function Cart (props) {
               className="cardInput exp"
               size="2"
               data-stripe="exp_month"
-              value="12" />
+              defaultValue="12" />
           </label>
           <span> / </span>
           <input
@@ -142,7 +142,7 @@ export default function Cart (props) {
             className="cardInput exp"
             size="2"
             data-stripe="exp_year"
-            value="19" />
+            defaultValue="19" />
         </div>
 
         <div className="formRow">
@@ -153,7 +153,7 @@ export default function Cart (props) {
               className="cardInput cvc"
               size="4"
               data-stripe="cvc"
-              value="123" />
+              defaultValue="123" />
           </label>
         </div>
 
