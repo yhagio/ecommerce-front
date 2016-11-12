@@ -1,0 +1,15 @@
+.linkButton {
+  width: 200px;
+  height: 50px;
+  margin: 5px;
+  padding: 10px;
+  text-decoration: none;
+  background: deepskyblue;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.receiptLink {
+  background: mediumpurple;
+}

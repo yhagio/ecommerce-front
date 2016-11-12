@@ -11,12 +11,13 @@ SearchContainer
 - Search bar with filter options (category)
 - Search with title, description, category, price
 
-SignupContainer
 
-SigninContainer
-
-AccountContainer
-
-AdminContainer
-
-ReviewForm
+- [ ] Account Page
+- [ ] Forgot Password Form
+- [ ] Create / Edit / Delete Review Form 
+- [ ] Load More (Products, Receipts, Reviews)
+- [ ] Search bar
+- [ ] Filter by category
+- [ ] Fix "Added to cart" Message
+- [ ] Error messages to UI
+- [ ] Animation
