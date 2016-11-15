@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import * as productActions from '../redux/Product';
 import * as cartActions from '../redux/Cart';
+import * as reviewFormActions from '../redux/ReviewForm';
 import Product from '../components/Product';
 import './product.css';
 
@@ -21,7 +22,14 @@ class ProductContainer extends Component {
         isFetching={ this.props.isFetching }
         error={ this.props.error }
         addToCart={ this.props.addToCart }
-        message={ this.props.message } />
+        message={ this.props.message }
+
+        submitReview={ this.props.submitReview }
+        updateReviewBody={ this.props.updateReviewBody }
+        updateReviewRating={ this.props.updateReviewRating }
+        reviewFormError={ this.props.reviewFormError }
+        reviewBody={ this.props.reviewBody }
+        reviewRating={ this.props.reviewRating } />
     )
   }
 }
@@ -35,9 +43,15 @@ ProductContainer.propTypes = {
   message: PropTypes.string.isRequired,
   // purchased: PropTypes.bool.isRequired,
   // purchasedProductIds: PropTypes.instanceOf(List),
+  submitReview: PropTypes.func.isRequired,
+  updateReviewBody: PropTypes.func.isRequired,
+  updateReviewRating: PropTypes.func.isRequired,
+  reviewFormError: PropTypes.string.isRequired,
+  reviewBody: PropTypes.string.isRequired,
+  reviewRating: PropTypes.string.isRequired,
 };
 
-function mapStateToProps({ product, cart, user }) {
+function mapStateToProps({ product, cart, user, reviewForm }) {
   // console.log('Product', product.get('product'))
   return {
     product: product.get('product'),
@@ -46,13 +60,17 @@ function mapStateToProps({ product, cart, user }) {
     message: cart.get('message'),
     // purchased: product.get('purchased'),
     // purchasedProductIds: user.get('purchasedProductIds')
+    reviewFormError: reviewForm.get('error'),
+    reviewBody: reviewForm.get('body'),
+    reviewRating: reviewForm.get('rating'),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     ...productActions,
-    ...cartActions
+    ...cartActions,
+    ...reviewFormActions
   }, dispatch);
 }
 

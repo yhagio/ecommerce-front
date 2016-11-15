@@ -1,0 +1,41 @@
+.reviewForm {
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.formTitle {
+  font-size: 1em;
+  color: dodgerblue;
+}
+
+.reviewTextArea {
+  width: 100%;
+  font-size: 1em;
+  padding: 5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.reviewSelectRating {
+  width: 80px;
+  height: 45px;
+  font-size: 1em;
+}
+
+.reviewSubmitBtn {
+  margin: 10px;
+  height: 45px;
+  width: 150px;
+  font-size: 1.1em;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+}
+
+.readyBtn {
+  background: lightseagreen;
+}

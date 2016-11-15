@@ -28,6 +28,7 @@ import purchased from './redux/Purchased';
 import receipts from './redux/Receipts';
 import account from './redux/Account';
 import forgotpass from './redux/ForgotPass';
+import reviewForm from './redux/ReviewForm';
 
 import { ROOT_URL } from './constants';
 import { setHeaders } from './helpers/utils';
@@ -42,7 +43,8 @@ const store = createStore(combineReducers({
   purchased,
   receipts,
   account,
-  forgotpass
+  forgotpass,
+  reviewForm,
 }), compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : (f) => f

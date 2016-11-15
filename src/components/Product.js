@@ -1,12 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default function Product (props) {
-  function submitReview(e) {
-    e.preventDefault();
-    return console.log('Open!')
-  }
+import ReviewForm from './ReviewForm';
 
+export default function Product (props) {
   const token = localStorage.getItem('token');
   
   let reviews = [];
@@ -51,9 +48,13 @@ export default function Product (props) {
         <div className="productReviews">
           <h3>Reviews (401)</h3>
           { props.product.get('purchased')
-            ? <form onSubmit={ submitReview }>
-                <input placeholder="Add Review" />
-              </form>
+            ? <ReviewForm
+                productId={ props.product.get('id') }
+                submitReview={ props.submitReview }
+                updateReviewBody={ props.updateReviewBody }
+                updateReviewRating={ props.updateReviewRating }
+                reviewFormError={ props.reviewFormError }                reviewBody={ props.reviewBody }
+                reviewRating={ props.reviewRating } />
             : '' }
           <ul>
             { reviews }
@@ -67,5 +68,12 @@ Product.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
-  addToCart: PropTypes.func.isRequired
+  addToCart: PropTypes.func.isRequired,
+
+  submitReview: PropTypes.func.isRequired,
+  updateReviewBody: PropTypes.func.isRequired,
+  updateReviewRating: PropTypes.func.isRequired,
+  reviewFormError: PropTypes.string.isRequired,
+  reviewBody: PropTypes.string.isRequired,
+  reviewRating: PropTypes.string.isRequired,
 }; 

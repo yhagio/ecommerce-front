@@ -35,6 +35,7 @@ export function fetchProduct (id) {
         return dispatch(fetchingProductSuccess(res.data))
       })
       .catch((err) => {
+        console.dir(err);
         let error = 'Could not get the product information.';
         if (err.response && err.response.data && err.response.data) {
           error = err.response.data;
