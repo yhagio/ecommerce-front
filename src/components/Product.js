@@ -5,19 +5,17 @@ import ReviewForm from './ReviewForm';
 
 export default function Product (props) {
   const token = localStorage.getItem('token');
-  
   let reviews = [];
-  for (let i = 0; i < 12; i++) {
-    reviews.push(
-      <li key={i} className="reviewItem">
-        <p>Marylou</p>
-        <p>4 stars</p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam asperiores voluptatibus quis voluptatum dignissimos, debitis eveniet reiciendis, perferendis ut doloribus, voluptate cupiditate autem. Commodi amet cupiditate facere provident dolor natus.
-        </p>
-        <p>2016/10/05</p>
-      </li>
-    )
+  if (Object.keys(props.product).length > 0) {
+    props.product.get('reviews').forEach((review) => {
+      reviews.push(
+        <li key={ review.get('id') } className="reviewItem">
+          <p>{ review.get('rating') } stars</p>
+          <p>{ review.get('body') }</p>
+          <p>{ review.get('updatedAt') }</p>
+        </li>
+      );
+    });
   }
 
   return props.isFetching
@@ -57,7 +55,7 @@ export default function Product (props) {
                 reviewRating={ props.reviewRating } />
             : '' }
           <ul>
-            { reviews }
+            { reviews.length > 0 ? reviews: 'No reviews yet.' }
           </ul>
         </div>
       </div>)

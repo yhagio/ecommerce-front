@@ -1,6 +1,7 @@
 - [X] Account Page
 - [X] Forgot Password Form
-- [ ] Create / Edit / Delete Review Form 
+- [X] Fetch display reviews
+- [ ] Create / Delete Review Form 
 - [ ] Load More (Products, Receipts, Reviews)
 - [ ] Search bar (title, description)
 - [ ] Filter by category and price
