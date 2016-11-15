@@ -1,7 +1,7 @@
 require('es6-promise').polyfill();
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { Map } from 'immutable';
+import { fromJS } from 'immutable';
 import { ROOT_URL } from '../constants';
 
 export const AUTH_USER = 'AUTH_USER';
@@ -51,11 +51,12 @@ export function unauthUser () {
   };
 }
 
-const initialState = Map({
+const initialState = fromJS({
   isFetching: false,
   error: '',
   isAuthenticated: false,
-  authedUser: {}
+  authedUser: {},
+  purchasedProductIds: [],
 });
 
 // Users reducer
@@ -132,11 +133,11 @@ export function signupUser ({firstName, lastName, email, password}) {
       .catch((err) => {
         // If request is incorrect
         // Show user the error
-        let error;
+        let error = 'Internal error occured.';
         if (err.response && err.response.data && err.response.data.error) {
           error = err.response.data.error;
         }
-        dispatch(authenticationError(error|| 'Internal error occured.'));
+        dispatch(authenticationError(error));
       });
   };
 }
@@ -157,11 +158,11 @@ export function signinUser ({email, password}) {
       .catch((err) => {
         // If request is incorrect
         // Show user the error
-        let error;
+        let error = 'Internal error occured.';
         if (err.response && err.response.data && err.response.data.error) {
           error = err.response.data.error;
         }
-        dispatch(authenticationError(error|| 'Internal error occured.'));
+        dispatch(authenticationError(error));
       });
   };
 }

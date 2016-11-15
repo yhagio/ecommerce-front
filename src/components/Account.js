@@ -56,8 +56,7 @@ export default function Account (props) {
               defaultValue={ props.user.get('email') }
               onChange={ (e) => props.updateEmail(e.target.value)}
               onBlur={ (e) => props.validateEmail(e.target.value) }
-              required={ true }
-              autoFocus={ true } />
+              required={ true } />
           </label>
 
           <label className='formLabel'>

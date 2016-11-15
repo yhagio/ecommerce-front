@@ -7,7 +7,7 @@ export default function Receipts (props) {
   props.receipts.forEach((receipt) => {
     receipts.push(
       <Link
-        to={ `products/${ receipt.get('product_id') }/purchased` }
+        to={ `/products/${ receipt.get('product_id') }/purchased` }
         key={ receipt.get('id') }
         className="receiptItem">
         <li>

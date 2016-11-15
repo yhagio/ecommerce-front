@@ -31,7 +31,13 @@ export function fetchProducts () {
     dispatch(fetchingProducts());
     return axios.get(`${ROOT_URL}/api/products`)
       .then((res) => dispatch(fetchingProductsSuccess(res.data)))
-      .catch((err) => dispatch(fetchingProductsError(err)));
+      .catch((err) => {
+        let error = 'Could not get the product list.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(fetchingProductsError(error))
+      });
   };
 }
 

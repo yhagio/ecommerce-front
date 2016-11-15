@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Map } from 'immutable';
 import { ROOT_URL } from '../constants';
+import { setHeaders } from '../helpers/utils';
 
 export const FETCHING_PRODUCT = 'FETCHING_PRODUCT';
 export const FETCHING_PRODUCT_SUCCESS = 'FETCHING_PRODUCT_SUCCESS';
@@ -29,16 +30,24 @@ export function fetchingProductError (error) {
 export function fetchProduct (id) {
   return function (dispatch) {
     dispatch(fetchingProduct());
-    return axios.get(`${ROOT_URL}/api/products/${id}`)
-      .then((res) => dispatch(fetchingProductSuccess(res.data)))
-      .catch((err) => dispatch(fetchingProductError(err)));
+    return axios.get(`${ROOT_URL}/api/products/${id}`, setHeaders())
+      .then((res) => {
+        return dispatch(fetchingProductSuccess(res.data))
+      })
+      .catch((err) => {
+        let error = 'Could not get the product information.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(fetchingProductError(error))
+      });
   };
 }
 
 const initialState = Map({
   product: {},
   error: '',
-  isFetching: false,
+  isFetching: false
 });
 
 export default function product (state = initialState, action) {

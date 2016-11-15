@@ -129,7 +129,13 @@ export function fetchUser () {
     dispatch(fetchingUser());
     return axios.get(`${ROOT_URL}/api/users/account`, setHeaders())
       .then((res) => dispatch(fetchingUserSuccess(res.data)))
-      .catch((err) => dispatch(fetchingUserError(err)));
+      .catch((err) => {
+        let error = 'Could not get the user infomation.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(fetchingUserError(error))
+      });
   };
 }
 
@@ -143,7 +149,13 @@ export function updateUser (userObject) {
         }, 5000);
         return dispatch(fetchingUserSuccess(res.data))
       })
-      .catch((err) => dispatch(fetchingUserError(err)));
+      .catch((err) => {
+        let error = 'Could not update.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(fetchingUserError(error))
+      });
   };
 }
 

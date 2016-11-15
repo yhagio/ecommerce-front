@@ -33,11 +33,10 @@ export function fetchPurchasedProduct (id) {
     dispatch(fetchingProduct());
     return axios.get(`${ROOT_URL}/api/products/${id}/purchased`, setHeaders())
       .then((res) => {
-        console.log('PURCHASED!! ', res.data);
         return dispatch(fetchingProductSuccess(res.data));
       })
       .catch((err) => {
-        console.dir(err);
+        // console.dir(err);
         let error = 'Not Purcached.';
         if (err.response && err.response.data && err.response.data) {
           error = err.response.data;

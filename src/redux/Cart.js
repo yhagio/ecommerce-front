@@ -9,6 +9,8 @@ export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
 export const CLEAR_ADDED_TO_CAR_MESSAGE = 'CLEAR_ADDED_TO_CAR_MESSAGE';
 export const FETCHING_CART_SUCCESS = 'FETCHING_CART_SUCCESS';
 export const FETCHING_CART_FAILURE = 'FETCHING_CART_FAILURE';
+export const PAY_TOTAL_FAILURE = 'PAY_TOTAL_FAILURE';
+export const PAID_TOTAL_SUCCESSFULLY = 'PAID_TOTAL_SUCCESSFULLY';
 
 export function fetchingCart () {
   return {
@@ -44,6 +46,19 @@ export function fetchingCartError (error) {
   };
 }
 
+export function failedToPay (error) {
+  return {
+    type: PAY_TOTAL_FAILURE,
+    error
+  };
+}
+
+export function successfullyPaid () {
+  return {
+    type: PAID_TOTAL_SUCCESSFULLY,
+  };
+}
+
 export function addToCart (id) {
   return function (dispatch) {
     return axios.post(`${ROOT_URL}/api/cart`, { id }, setHeaders())
@@ -53,7 +68,13 @@ export function addToCart (id) {
           dispatch(clearMessage());
         }, 5000);
       })
-      .catch(err => dispatch(fetchingCartError(err)));
+      .catch((err) => {
+        let error = 'Could not add the product.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(fetchingCartError(error));
+      });
   };
 }
 
@@ -62,7 +83,13 @@ export function fetchCart () {
     dispatch(fetchingCart());
     return axios.get(`${ROOT_URL}/api/cart`, setHeaders())
       .then(res => dispatch(fetchingCartSuccess(res.data[0])))
-      .catch(err => dispatch(fetchingCartError(err)));
+      .catch((err) => {
+        let error = 'Could not get the cart infomation.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(fetchingCartError(error));
+      });
   };
 }
 
@@ -71,21 +98,29 @@ export function deletefromCart (id) {
     dispatch(fetchingCart());
     return axios.delete(`${ROOT_URL}/api/cart/${id}`, setHeaders())
       .then(res => dispatch(fetchingCartSuccess(res.data[0])))
-      .catch(err => dispatch(fetchingCartError(err)));
+      .catch((err) => {
+        let error = 'Could not remove the product.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(fetchingCartError(error));
+      });
   };
 }
 
 export function payTotal (cartObject) {
-  console.log('Payment: \n', cartObject);
   return function (dispatch) {
-    // dispatch(fetchingCart());
     return axios.post(`${ROOT_URL}/api/payment`, cartObject, setHeaders())
       .then(res => {
+        dispatch(successfullyPaid());
         return browserHistory.push('/account');
       })
       .catch(err => {
-        console.log('Error', err)
-        return;
+        let error = 'Could not purchase them.';
+        if (err.response && err.response.data && err.response.data) {
+          error = err.response.data;
+        }
+        return dispatch(failedToPay(error));
       });
   };
 }
@@ -102,23 +137,23 @@ export default function cart (state = initialState, action) {
 
     case FETCHING_CART :
       return state.merge({
-        isFetching: true
+        isFetching: true,
       });
 
     case ADD_TO_CART_SUCCESS :
       return state.merge({
-        message: action.message
+        message: action.message,
       });
     
     case CLEAR_ADDED_TO_CAR_MESSAGE :
       return state.merge({
-        message: ''
+        message: '',
       });
 
     case FETCHING_CART_FAILURE :
       return state.merge({
         isFetching: false,
-        error: action.error
+        error: action.error,
       });
 
     case FETCHING_CART_SUCCESS :
@@ -126,6 +161,18 @@ export default function cart (state = initialState, action) {
         isFetching: false,
         error: '',
         cart: action.cart,
+      });
+    
+    case PAY_TOTAL_FAILURE :
+      return state.merge({
+        isFetching: false,
+        error: action.error,
+      });
+    
+    case PAID_TOTAL_SUCCESSFULLY :
+      return state.merge({
+        isFetching: false,
+        error: '',
       });
 
     default :

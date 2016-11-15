@@ -1,6 +1,12 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default function Product (props) {
+  function submitReview(e) {
+    e.preventDefault();
+    return console.log('Open!')
+  }
+
   const token = localStorage.getItem('token');
   
   let reviews = [];
@@ -32,9 +38,11 @@ export default function Product (props) {
             <p>Price: <span>${ props.product.get('price') }</span></p>
             <p>5 stars</p>
             <p>{ props.product.get('description') }</p>
-            { token ? <button 
-              className="addButton"
-              onClick={ (e) => props.addToCart(props.product.get('id'))}>Add to cart</button> : '' }
+            { token
+              ? props.product.get('purchased')
+                ? <Link to={`/products/${ props.product.get('id') }/purchased`}>Read</Link>
+                : <button className="addButton" onClick={ (e) => props.addToCart(props.product.get('id'))}>Add to cart</button> 
+              : '' }
             <br />
             <span className="addToCartMessage">{ props.message }</span>
           </div>
@@ -42,7 +50,11 @@ export default function Product (props) {
         
         <div className="productReviews">
           <h3>Reviews (401)</h3>
-
+          { props.product.get('purchased')
+            ? <form onSubmit={ submitReview }>
+                <input placeholder="Add Review" />
+              </form>
+            : '' }
           <ul>
             { reviews }
           </ul>

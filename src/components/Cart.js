@@ -36,7 +36,6 @@ export default function Cart (props) {
     e.preventDefault();
 
     let form = document.getElementById('payment-form');
-    console.log(form)
 
     function stripeResponseHandler(status, response) {
 
