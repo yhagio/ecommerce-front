@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 
 export default function Product (props) {
+  const token = localStorage.getItem('token');
+  
   let reviews = [];
   for (let i = 0; i < 12; i++) {
     reviews.push(
@@ -30,9 +32,9 @@ export default function Product (props) {
             <p>Price: <span>${ props.product.get('price') }</span></p>
             <p>5 stars</p>
             <p>{ props.product.get('description') }</p>
-            <button 
+            { token ? <button 
               className="addButton"
-              onClick={ (e) => props.addToCart(props.product.get('id'))}>Add to cart</button>
+              onClick={ (e) => props.addToCart(props.product.get('id'))}>Add to cart</button> : '' }
             <br />
             <span className="addToCartMessage">{ props.message }</span>
           </div>

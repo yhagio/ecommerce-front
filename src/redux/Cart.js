@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 
 export const FETCHING_CART = 'FETCHING_CART';
 export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
+export const CLEAR_ADDED_TO_CAR_MESSAGE = 'CLEAR_ADDED_TO_CAR_MESSAGE';
 export const FETCHING_CART_SUCCESS = 'FETCHING_CART_SUCCESS';
 export const FETCHING_CART_FAILURE = 'FETCHING_CART_FAILURE';
 
@@ -20,6 +21,13 @@ export function addToCartSuccess () {
     type: ADD_TO_CART_SUCCESS,
     message: 'Added to cart.'
   };
+}
+
+export function clearMessage () {
+  return {
+    type: CLEAR_ADDED_TO_CAR_MESSAGE,
+  };
+
 }
 
 export function fetchingCartSuccess (cart) {
@@ -39,7 +47,12 @@ export function fetchingCartError (error) {
 export function addToCart (id) {
   return function (dispatch) {
     return axios.post(`${ROOT_URL}/api/cart`, { id }, setHeaders())
-      .then(res => dispatch(addToCartSuccess()))
+      .then(res => {
+        dispatch(addToCartSuccess())
+        return setTimeout(() => {
+          dispatch(clearMessage());
+        }, 5000);
+      })
       .catch(err => dispatch(fetchingCartError(err)));
   };
 }
@@ -95,6 +108,11 @@ export default function cart (state = initialState, action) {
     case ADD_TO_CART_SUCCESS :
       return state.merge({
         message: action.message
+      });
+    
+    case CLEAR_ADDED_TO_CAR_MESSAGE :
+      return state.merge({
+        message: ''
       });
 
     case FETCHING_CART_FAILURE :
