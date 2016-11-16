@@ -23,6 +23,7 @@ class ProductContainer extends Component {
         error={ this.props.error }
         addToCart={ this.props.addToCart }
         message={ this.props.message }
+        cartError={ this.props.cartError }
 
         submitReview={ this.props.submitReview }
         deleteReview={ this.props.deleteReview }
@@ -42,6 +43,7 @@ ProductContainer.propTypes = {
   error: PropTypes.string.isRequired,
   addToCart: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  cartError: PropTypes.string.isRequired,
   // purchased: PropTypes.bool.isRequired,
   // purchasedProductIds: PropTypes.instanceOf(List),
   submitReview: PropTypes.func.isRequired,
@@ -60,6 +62,7 @@ function mapStateToProps({ product, cart, user, reviewForm }) {
     isFetching: product.get('isFetching'),
     error: product.get('error'),
     message: cart.get('message'),
+    cartError: cart.get('error'),
     // purchased: product.get('purchased'),
     // purchasedProductIds: user.get('purchasedProductIds')
     reviewFormError: reviewForm.get('error'),

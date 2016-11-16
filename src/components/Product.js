@@ -69,7 +69,12 @@ export default function Product (props) {
                 : <button className="addButton" onClick={ (e) => props.addToCart(props.product.get('id'))}>Add to cart</button> 
               : '' }
             <br />
-            <span className="addToCartMessage">{ props.message }</span>
+            { props.message
+              ? <span className="addToCartMessage">{ props.message }</span>
+              : null }
+            { props.cartError
+              ? <span className="cartError">{ props.cartError }</span>
+              : null }
           </div>
         </div>
         
@@ -101,6 +106,7 @@ Product.propTypes = {
   error: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   addToCart: PropTypes.func.isRequired,
+  cartError: PropTypes.string.isRequired,
 
   submitReview: PropTypes.func.isRequired,
   deleteReview: PropTypes.func.isRequired,

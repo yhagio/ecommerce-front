@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 
 export const FETCHING_CART = 'FETCHING_CART';
 export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
-export const CLEAR_ADDED_TO_CAR_MESSAGE = 'CLEAR_ADDED_TO_CAR_MESSAGE';
+export const CLEAR_ERROR_MESSAGE = 'CLEAR_ERROR_MESSAGE';
 export const FETCHING_CART_SUCCESS = 'FETCHING_CART_SUCCESS';
 export const FETCHING_CART_FAILURE = 'FETCHING_CART_FAILURE';
 export const PAY_TOTAL_FAILURE = 'PAY_TOTAL_FAILURE';
@@ -27,7 +27,7 @@ export function addToCartSuccess () {
 
 export function clearMessage () {
   return {
-    type: CLEAR_ADDED_TO_CAR_MESSAGE,
+    type: CLEAR_ERROR_MESSAGE,
   };
 
 }
@@ -73,7 +73,10 @@ export function addToCart (id) {
         if (err.response && err.response.data && err.response.data) {
           error = err.response.data;
         }
-        return dispatch(fetchingCartError(error));
+        dispatch(fetchingCartError(error));
+        return setTimeout(() => {
+          dispatch(clearMessage());
+        }, 5000);
       });
   };
 }
@@ -145,9 +148,10 @@ export default function cart (state = initialState, action) {
         message: action.message,
       });
     
-    case CLEAR_ADDED_TO_CAR_MESSAGE :
+    case CLEAR_ERROR_MESSAGE :
       return state.merge({
         message: '',
+        error: ''
       });
 
     case FETCHING_CART_FAILURE :
