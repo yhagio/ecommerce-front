@@ -96,7 +96,8 @@ export default function Cart (props) {
       </div>
       */}
 
-      <form onSubmit={ submitForm } id="payment-form" className="cardForm">
+      { total > 1
+      ? <form onSubmit={ submitForm } id="payment-form" className="cardForm">
         <span className="payment-errors"></span>
 
         <div className="formRow">
@@ -162,7 +163,7 @@ export default function Cart (props) {
           type="submit"
           className="submit payButton"
           value="Pay Now" />
-      </form>
+      </form> : <h4>No product in your cart.</h4> }
     </div>;
 }
 

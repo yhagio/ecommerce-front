@@ -2,32 +2,48 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import ReviewForm from './ReviewForm';
+import { getFormattedDate } from '../helpers/utils';
+import './product.css';
 
 export default function Product (props) {
   const token = localStorage.getItem('token');
+
+  // Product review list
   let reviews = [];
+  // Check if the user already posted a review for this product
   let postedReview = false;
+  // Average rating
+  let totalRatings = 0;
+  let averageRating;
 
   if (Object.keys(props.product).length > 0) {
     const authedId = props.product.get('authedId');
 
     props.product.get('reviews').forEach((review) => {
+      totalRatings += review.get('rating');
       if (review.get('user_id') === authedId) {
         postedReview = true;
       }
       reviews.push(
         <li key={ review.get('id') } className="reviewItem">
-          <p>{ review.get('rating') } stars</p>
-          <p>{ review.get('body') }</p>
-          <p>{ review.get('updatedAt') }</p>
-          { review.get('user_id') === authedId ? <button onClick={ (e) => props.deleteReview(review.get('product_id')) }>X</button> : '' }
+          <p>{ review.get('rating') } / 5</p>
+          <p className="reviewBody">{ review.get('body') }</p>
+          <p>{ getFormattedDate(review.get('updatedAt')) }</p>
+          {/* Show delete button if the user is the owner of this review */}
+          { review.get('user_id') === authedId 
+            ? <button onClick={ (e) => props.deleteReview(review.get('product_id')) } className="deleteButton">X</button>
+            : '' }
         </li>
       );
     });
+
+    averageRating = (totalRatings / reviews.length);
+    isNaN(averageRating) ? averageRating = 'N/A' : averageRating = Math.round(averageRating * 10) / 10;
   }
 
   return props.isFetching
   ? <h3>Loading ...</h3>
+  // Make sure product object is loaded & there is no error
   : Object.keys(props.product).length === 0 || props.error.length > 0 
     ? <h3>No Product Found</h3>
     : (<div>
@@ -39,11 +55,15 @@ export default function Product (props) {
           <div className="details">
             <h3>{ props.product.get('name') }</h3>
             <p>Price: <span>${ props.product.get('price') }</span></p>
-            <p>5 stars</p>
-            <p>{ props.product.get('description') }</p>
+            <p>Average Rating: { averageRating }</p>
+            <p className="description">{ props.product.get('description') }</p>
+            {/* Check if user has token (logged-in) & 
+                Check if user purchased this product, if yes, show Link */}
             { token
               ? props.product.get('purchased')
-                ? <Link to={`/products/${ props.product.get('id') }/purchased`}>Read</Link>
+                ? <Link 
+                    to={`/products/${ props.product.get('id') }/purchased`}
+                    className="readButton">Read</Link>
                 : <button className="addButton" onClick={ (e) => props.addToCart(props.product.get('id'))}>Add to cart</button> 
               : '' }
             <br />
@@ -53,6 +73,7 @@ export default function Product (props) {
         
         <div className="productReviews">
           <h3>Reviews (401)</h3>
+          {/* Display review form */}
           { props.product.get('purchased') && postedReview === false
             ? <ReviewForm
                 productId={ props.product.get('id') }
@@ -63,7 +84,10 @@ export default function Product (props) {
                 reviewRating={ props.reviewRating } />
             : '' }
           <ul>
-            { reviews.length > 0 ? reviews: 'No reviews yet.' }
+            {/* Display reviews */}
+            { reviews.length > 0 
+              ? reviews.reverse()
+              : 'No reviews yet.' }
           </ul>
         </div>
       </div>)

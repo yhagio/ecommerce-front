@@ -1,0 +1,28 @@
+.receiptsContainer {
+  /*border: 1px solid #aaa;*/
+  padding: 10px;
+}
+
+.receiptList {
+  /*border: 1px solid #550000;*/
+  padding: 5px;
+}
+
+.receiptItem {
+  display: block;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 5px;
+  padding: 0 7px;
+  color: #555;
+}
+
+.receiptTitle {
+  display: inline-block;
+}
+
+.receiptPrice {
+  margin-left: 15px;
+  display: inline-block;
+}

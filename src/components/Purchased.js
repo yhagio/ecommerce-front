@@ -8,6 +8,7 @@ export default function Purchased (props) {
     ? <p>{ props.error || 'No Product available' }</p>
     : <div className=''>
         <h3>You purchased : { props.product.get('description') }</h3>
-        <Link to={`/products/${ props.product.get('product_id')}`}>Add Review</Link>
+        <p>This page should be the actual product content for this product</p>
+        <Link to={`/products/${ props.product.get('product_id')}`}>Add Review / Go to product page</Link>
       </div>;
 }
