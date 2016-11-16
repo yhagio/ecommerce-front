@@ -20,7 +20,7 @@ export default function Product (props) {
           <p>{ review.get('rating') } stars</p>
           <p>{ review.get('body') }</p>
           <p>{ review.get('updatedAt') }</p>
-          { postedReview ? <button onClick={ (e) => props.deleteReview(review.get('product_id')) }>X</button> : '' }
+          { review.get('user_id') === authedId ? <button onClick={ (e) => props.deleteReview(review.get('product_id')) }>X</button> : '' }
         </li>
       );
     });

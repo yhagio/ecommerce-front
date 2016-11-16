@@ -1,12 +1,15 @@
 - [X] Account Page
 - [X] Forgot Password Form
 - [X] Fetch display reviews
-- [ ] Create / Delete Review Form 
+- [X] Create / Delete Review Form 
+- [X] Fix "Added to cart" messages
+- [X] Display "Add To Cart" only when logged in
+- [ ] Skip/Limit (Load More) for products, reviews, Receipts
+- [ ] Limit Cart items
+- [ ] Disable "Add to cart" once added to cart
 - [ ] Load More (Products, Receipts, Reviews)
 - [ ] Search bar (title, description)
 - [ ] Filter by category and price
-- [X] Fix "Added to cart" messages
-- [X] Display "Add To Cart" only when logged in
 - [ ] Error messages to UI
 - [ ] Testing
 - [ ] Animation
