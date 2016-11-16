@@ -8,6 +8,8 @@ export const UPDATE_REVIEW_BODY = 'UPDATE_REVIEW_BODY';
 export const UPDATE_REVIEW_RATING = 'UPDATE_REVIEW_RATING';
 export const SUBMISSION_REVIEW_SUCCESS = 'SUBMISSION_REVIEW_SUCCESS';
 export const SUBMISSION_EREVIEW_ERROR = 'SUBMISSION_EREVIEW_ERROR';
+export const DELETION_REVIEW_SUCCESS = 'DELETION_REVIEW_SUCCESS';
+export const DELETION_REVIEW_ERROR = 'DELETION_REVIEW_ERROR';
 
 // Actions
 export function updateReviewBody (body) {
@@ -37,6 +39,19 @@ export function submissionError (error) {
   };
 }
 
+export function deletionSuccess () {
+  return {
+    type: DELETION_REVIEW_SUCCESS
+  };
+}
+
+export function deletionError (error) {
+  return {
+    type: DELETION_REVIEW_ERROR,
+    error
+  };
+}
+
 const initialState = Map({
   body: '',
   rating: '',
@@ -47,24 +62,34 @@ const initialState = Map({
 export default function reviewFormReducer (state = initialState, action) {
   switch (action.type) {
 
-    case UPDATE_REVIEW_BODY:
+    case UPDATE_REVIEW_BODY :
       return state.merge({
         body: action.body
       });
 
-    case UPDATE_REVIEW_RATING:
+    case UPDATE_REVIEW_RATING :
       return state.merge({
         rating: action.rating
       });
 
-    case SUBMISSION_REVIEW_SUCCESS:
+    case SUBMISSION_REVIEW_SUCCESS :
       return state.merge({
         body: '',
         rating: '',
         error: ''
       });
 
-    case SUBMISSION_EREVIEW_ERROR:
+    case SUBMISSION_EREVIEW_ERROR :
+      return state.merge({
+        error: action.error
+      });
+    
+    case DELETION_REVIEW_SUCCESS :
+      return state.merge({
+        error: ''
+      });
+    
+    case DELETION_REVIEW_ERROR :
       return state.merge({
         error: action.error
       });
@@ -76,7 +101,6 @@ export default function reviewFormReducer (state = initialState, action) {
 
 // Handlers
 export function submitReview (productId, review) {
-  // console.log(restaurantId, body, rating);
   return function (dispatch) {
     axios.post(`${ROOT_URL}/api/products/${productId}/reviews`, review, setHeaders())
       .then((res) => {
@@ -90,6 +114,25 @@ export function submitReview (productId, review) {
           error = err.response.data.error;
         }
         return dispatch(submissionError(error));
+      });
+  };
+}
+
+export function deleteReview (productId) {
+  // console.log(productId);
+  return function (dispatch) {
+    axios.delete(`${ROOT_URL}/api/products/${productId}/reviews`, setHeaders())
+      .then((res) => {
+        // console.log('DELETED REVIEW \n', res);
+        dispatch(deletionSuccess());
+        return window.location.pathname = `products/${productId}`;
+      })
+      .catch((err) => {
+        let error = 'Review deletion failed.';
+        if (err.response && err.response.data && err.response.data.error) {
+          error = err.response.data.error;
+        }
+        return dispatch(deletionError(error));
       });
   };
 }

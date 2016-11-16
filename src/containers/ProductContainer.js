@@ -25,6 +25,7 @@ class ProductContainer extends Component {
         message={ this.props.message }
 
         submitReview={ this.props.submitReview }
+        deleteReview={ this.props.deleteReview }
         updateReviewBody={ this.props.updateReviewBody }
         updateReviewRating={ this.props.updateReviewRating }
         reviewFormError={ this.props.reviewFormError }
@@ -44,6 +45,7 @@ ProductContainer.propTypes = {
   // purchased: PropTypes.bool.isRequired,
   // purchasedProductIds: PropTypes.instanceOf(List),
   submitReview: PropTypes.func.isRequired,
+  deleteReview: PropTypes.func.isRequired,
   updateReviewBody: PropTypes.func.isRequired,
   updateReviewRating: PropTypes.func.isRequired,
   reviewFormError: PropTypes.string.isRequired,

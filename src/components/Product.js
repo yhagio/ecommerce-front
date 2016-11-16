@@ -20,7 +20,7 @@ export default function Product (props) {
           <p>{ review.get('rating') } stars</p>
           <p>{ review.get('body') }</p>
           <p>{ review.get('updatedAt') }</p>
-          { postedReview ? <button>X</button> : '' }
+          { postedReview ? <button onClick={ (e) => props.deleteReview(review.get('product_id')) }>X</button> : '' }
         </li>
       );
     });
@@ -77,6 +77,7 @@ Product.propTypes = {
   addToCart: PropTypes.func.isRequired,
 
   submitReview: PropTypes.func.isRequired,
+  deleteReview: PropTypes.func.isRequired,
   updateReviewBody: PropTypes.func.isRequired,
   updateReviewRating: PropTypes.func.isRequired,
   reviewFormError: PropTypes.string.isRequired,
