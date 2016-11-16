@@ -80,9 +80,9 @@ export function submitReview (productId, review) {
   return function (dispatch) {
     axios.post(`${ROOT_URL}/api/products/${productId}/reviews`, review, setHeaders())
       .then((res) => {
-        console.log('NEW REVIEW LIST\n', res.data);
+        // console.log('NEW REVIEW LIST\n', res.data);
         dispatch(submittedSuccessfully());
-        // TODO: update reviews list
+        return window.location.pathname = `products/${productId}`;
       })
       .catch((err) => {
         let error = 'Review submission failed.';

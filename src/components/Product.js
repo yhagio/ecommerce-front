@@ -6,13 +6,21 @@ import ReviewForm from './ReviewForm';
 export default function Product (props) {
   const token = localStorage.getItem('token');
   let reviews = [];
+  let postedReview = false;
+
   if (Object.keys(props.product).length > 0) {
+    const authedId = props.product.get('authedId');
+
     props.product.get('reviews').forEach((review) => {
+      if (review.get('user_id') === authedId) {
+        postedReview = true;
+      }
       reviews.push(
         <li key={ review.get('id') } className="reviewItem">
           <p>{ review.get('rating') } stars</p>
           <p>{ review.get('body') }</p>
           <p>{ review.get('updatedAt') }</p>
+          { postedReview ? <button>X</button> : '' }
         </li>
       );
     });
@@ -45,7 +53,7 @@ export default function Product (props) {
         
         <div className="productReviews">
           <h3>Reviews (401)</h3>
-          { props.product.get('purchased')
+          { props.product.get('purchased') && postedReview === false
             ? <ReviewForm
                 productId={ props.product.get('id') }
                 submitReview={ props.submitReview }

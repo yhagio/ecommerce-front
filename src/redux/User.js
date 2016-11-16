@@ -56,7 +56,7 @@ const initialState = fromJS({
   error: '',
   isAuthenticated: false,
   authedUser: {},
-  purchasedProductIds: [],
+  // purchasedProductIds: [],
 });
 
 // Users reducer
