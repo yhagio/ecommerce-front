@@ -19,8 +19,8 @@ export default function Navigation ({ isAuthenticated }) {
     <nav>
       <div className="navBar">
         <Link to="/" className="item" role="link" tabIndex="1">Home</Link>
-        <Link to="/search" className="item" role="link" tabIndex="2">Search</Link>
-        <Link to="/category" className="item" role="link" tabIndex="3">Category</Link>
+        {/* <Link to="/search" className="item" role="link" tabIndex="2">Search</Link>
+        <Link to="/category" className="item" role="link" tabIndex="3">Category</Link> */}
         <Links isAuthenticated={ isAuthenticated } />
       </div>
     </nav>

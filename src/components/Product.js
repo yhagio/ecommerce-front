@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 import ReviewForm from './ReviewForm';
 import { getFormattedDate } from '../helpers/utils';
 import './product.css';
+// http://loremflickr.com/250/320
+import productImage from './product.jpeg';
 
 export default function Product (props) {
   const token = localStorage.getItem('token');
@@ -26,7 +28,7 @@ export default function Product (props) {
       }
       reviews.push(
         <li key={ review.get('id') } className="reviewItem">
-          <p>{ review.get('rating') } / 5</p>
+          <p>Rating: { review.get('rating') } / 5</p>
           <p className="reviewBody">{ review.get('body') }</p>
           <p>{ getFormattedDate(review.get('updatedAt')) }</p>
           {/* Show delete button if the user is the owner of this review */}
@@ -49,7 +51,7 @@ export default function Product (props) {
     : (<div>
         <div className="productContainer">
           <div className="imageBox">
-            <img className="productImageLarge" src="" alt="Product" />
+            <img className="productImageLarge" src={ productImage } alt="Product" />
           </div>
 
           <div className="details">

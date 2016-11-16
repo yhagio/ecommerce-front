@@ -1,16 +1,17 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { List } from 'immutable';
+// http://lorempixel.com/g/120/150
+import productSmall from './productSmall.jpeg';
 
 export default function Products (props) {
-  // console.log(props.products.size)
   let productList = [];
   props.products.forEach((product) => {
     productList.push(
       <Link to={ `products/${ product.get('id') }` } key={ product.get('id') } className="productItem">
         <li>
           <h4 className="productTitle">{ product.get('name') }</h4>
-          <img src="" alt="product" className="productImage" />
+          <img src={ productSmall } alt="product" className="productImage" />
           <p className="price">Price: <span>{ product.get('price') }</span></p>
         </li>
       </Link>    

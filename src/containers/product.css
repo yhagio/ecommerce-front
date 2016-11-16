@@ -54,8 +54,12 @@
 }
 
 .reviewItem {
-  box-shadow: 0 5px 1px #aaa;
-  padding: 5px 10px;
+  /*box-shadow: 0 5px 1px #aaa;*/
+  max-width: 600px;
+  margin-bottom: 5px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 0px 10px;
   position: relative;
 }
 
