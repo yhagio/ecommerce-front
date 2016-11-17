@@ -2,6 +2,7 @@
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
 import './card.css';
+import productImage from './product.jpeg';
 
 export default function Cart (props) {
   let cartList = [];
@@ -18,15 +19,20 @@ export default function Cart (props) {
 
     cartList.push(
       <li key={ i } className="cartItem">
-        <div className="cart-el cart-product-image-box">
-          <img src="" alt="product" className="cart-product-image" />
+        <div className="cartItem-upper-box">
+          <div className="cart-product-image-box">
+            <img src={ productImage } alt="product" className="cart-product-image" />
+          </div>
+          <p className="cart-product-title">{ item.get('name') }</p>
         </div>
-        <p className="cart-el">{ item.get('name') }</p>
-        <p className="cart-el">Price: ${ item.get('price') }</p>
-        <div className="cart-el">
-          <button
-            className="remove-button"
-            onClick={ (e) => props.deletefromCart(item.get('id')) }>Remove</button>
+
+        <div className="cartItem-lower-box">
+          <p className="cart-el">Price: ${ item.get('price') }</p>
+          <div className="cart-el">
+            <button
+              className="remove-button"
+              onClick={ (e) => props.deletefromCart(item.get('id')) }>Remove</button>
+          </div>
         </div>
       </li>
     )
@@ -84,7 +90,7 @@ export default function Cart (props) {
   ? <h3>Loading ...</h3>
   : <div className="cartContainer">
       <h3>Your Cart</h3>
-      <ul>
+      <ul className="cartList">
         { cartList }
       </ul>
       {/* 
@@ -100,7 +106,7 @@ export default function Cart (props) {
       ? <form onSubmit={ submitForm } id="payment-form" className="cardForm">
         <span className="payment-errors"></span>
 
-        <div className="formRow">
+        {/*<div className="formRow">
           <label>
             <span>Amount Total ($)</span>
             <input
@@ -112,57 +118,65 @@ export default function Cart (props) {
               required={ true }
               readOnly />
           </label>
-        </div>
+        </div>*/}
 
         <div className="formRow">
           <label>
-            <span>Card Number</span>
+            <span className="hidden">Card Number</span>
             <input
               type="text"
               className="cardInput card"
               size="20"
               data-stripe="number"
+              placeholder="Card Number"
+              maxLength="20"
               defaultValue="4242 4242 4242 4242" />
           </label>
         </div>
 
-        <div className="formRow">
-          <label>
-            <span>Expiration (MM/YY)</span>
-            <input
-              type="text"
-              className="cardInput exp"
-              size="2"
-              data-stripe="exp_month"
-              defaultValue="12" />
-          </label>
-          <span> / </span>
-          <input
-            type="text"
-            className="cardInput exp"
-            size="2"
-            data-stripe="exp_year"
-            defaultValue="19" />
-        </div>
+        <div className="expCvcRow">
+          <div className="expRow">
+            <label>
+              <span className="hidden">Expiration (MM/YY)</span>
+              <input
+                type="text"
+                className="cardInput exp"
+                size="2"
+                data-stripe="exp_month"
+                placeholder="MM"
+                maxLength="2"
+                defaultValue="12" />
+              <span>/</span>
+              <input
+                type="text"
+                className="cardInput exp"
+                size="2"
+                data-stripe="exp_year"
+                placeholder="YY"
+                maxLength="2"
+                defaultValue="19" />
+            </label>
+          </div>
 
-        <div className="formRow">
-          <label>
-            <span>CVC</span>
-            <input
-              type="text"
-              className="cardInput cvc"
-              size="4"
-              data-stripe="cvc"
-              defaultValue="123" />
-          </label>
+          <div className="cvcRow">
+            <label>
+              <span className="hidden">CVC</span>
+              <input
+                type="text"
+                className="cardInput cvc"
+                size="4"
+                data-stripe="cvc"
+                placeholder="CVC"
+                maxLength="4"
+                defaultValue="123" />
+            </label>
+          </div>
         </div>
-
-        <br />
 
         <input
           type="submit"
           className="submit payButton"
-          value="Pay Now" />
+          value={ `Pay CA$${ total }` } />
       </form> : <h4>No product in your cart.</h4> }
     </div>;
 }

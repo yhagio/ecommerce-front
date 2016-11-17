@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 
 import ReviewForm from './ReviewForm';
 import { getFormattedDate } from '../helpers/utils';
-import './product.css';
-// http://loremflickr.com/250/320
+// import './product.css';
+// Image from: http://loremflickr.com/250/320
 import productImage from './product.jpeg';
 
 export default function Product (props) {
@@ -79,7 +79,7 @@ export default function Product (props) {
         </div>
         
         <div className="productReviews">
-          <h3>Reviews (401)</h3>
+          <h3 className="reviewTitle">Reviews ({ reviews.length })</h3>
           {/* Display review form */}
           { props.product.get('purchased') && postedReview === false
             ? <ReviewForm
@@ -90,7 +90,7 @@ export default function Product (props) {
                 reviewFormError={ props.reviewFormError }                reviewBody={ props.reviewBody }
                 reviewRating={ props.reviewRating } />
             : '' }
-          <ul>
+          <ul className="reviewList">
             {/* Display reviews */}
             { reviews.length > 0 
               ? reviews.reverse()

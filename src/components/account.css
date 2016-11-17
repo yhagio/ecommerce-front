@@ -1,6 +1,5 @@
 .accountContainer {
   padding: 20px;
-  /*border: 1px solid #ccc;*/
   max-width: 400px;
   margin: auto;
 }
@@ -37,6 +36,11 @@
   display: block;
   text-align: center;
   font-size: 1em;;
+}
+
+.linkButton:hover,
+.receiptLink:hover {
+  cursor: pointer;
 }
 
 .editForm {

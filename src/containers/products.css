@@ -11,7 +11,6 @@
 
 .productItem {
   flex-grow: 1;
-  /*flex: 1 0 140px;*/
   box-shadow: 0 0 10px #ddd;
   margin: 2px;
   padding: 2px 10px;
@@ -19,7 +18,13 @@
   display: inline-block;
   text-decoration: none;
   color: #555;
-  /*max-width: 211.5px;*/
+  transition: all 0.4s ease;
+}
+
+.productItem:hover,
+.productItem:focus {
+  box-shadow: 0 0 15px #777;
+  transition: all 0.4s ease;
 }
 
 .productImage {
@@ -28,6 +33,12 @@
   display: block;
   margin: auto;
   background: #00dddd;
+}
+
+@media screen and (max-width: 360px) {
+  .productItem {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 620px) {

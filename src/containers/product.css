@@ -2,29 +2,42 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  /*box-shadow: 0 0 10px #aaa;*/
+  box-shadow: 0 0 10px #aaa;
 }
-
-
 
 .imageBox {
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: 10px;
   text-align: center;
+  padding: 5px;
 }
 
 .productImageLarge {
-  width: 250px;
-  height: 320px;
+  max-width: 250px;
+  max-height: 320px;
   background: #00dddd;
+  transition: all 0.5s ease-out;
 }
 
 .details {
   flex-grow: 3;
   flex-shrink: 1;
   flex-basis: 10px;
-  padding: 5px;
+  padding: 5px 5px 5px 10px;;
+}
+
+@media screen and (max-width: 500px) {
+  .imageBox,
+  .details {
+    flex-grow: 1
+  }
+
+  .productImageLarge {
+    max-width: 150px;
+    max-height: 250px;
+    transition: all 0.5s ease-out;
+  }
 }
 
 .addButton {
@@ -36,21 +49,35 @@
   border-radius: 5px;
   font-size: 1em;
   color: #fff;
+  transition: all .3s ease-in;
 }
 
 .addButton:hover {
-  background-color: mediumseagreen;
-  /*transition: all .5s ease-in;*/
+  background-color: limegreen;
+  transition: all .3s ease-in;
+  cursor: pointer;
 }
 
 .addButton:active {
   background-color: mediumpurple;
 }
 
+/***********************
+ Product Reviews 
+ ***********************/
+
 .productReviews {
   margin-top: 20px;
   padding: 5px;
-  /*box-shadow: 0 0 10px #aaa;*/
+  box-shadow: 0 0 10px #aaa;
+}
+
+.reviewTitle {
+  margin-left: 5px;
+}
+
+.reviewList {
+  padding: 5px;
 }
 
 .reviewItem {
@@ -71,4 +98,58 @@
 .cartError {
   color: #B22222;
   margin: 14px;
+}
+
+.description {
+  margin: 10px 0 10px 0;
+  word-wrap: break-word;
+}
+
+.readButton {
+  display: block;
+  width: 100px;
+  margin: 20px 0 0 0;
+  padding: 12px 25px;
+  text-decoration: none;
+  text-align: center;
+  background-color: mediumpurple;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #fff;
+  transition: all 0.7s ease;
+}
+
+.readButton:hover {
+  background: #ff7711;
+  transition: all 0.7s ease;
+}
+
+.reviewBody {
+  word-wrap: break-word;
+}
+
+.deleteButton {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  background-color: #777;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #fff;
+  transition: all 0.5s ease;
+}
+
+.deleteButton:hover {
+  cursor: pointer;
+  background: #ff0000;
+  transition: all 0.5s ease;
+}
+
+.deleteButton:active {
+  box-shadow: 0 0 10px #aaa;
 }

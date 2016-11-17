@@ -14,3 +14,5 @@
 - [ ] Testing
 - [ ] Animation
 - [ ] Styling
+- [ ] Deploy to firebase
+- [ ] Documentation + Screenshot

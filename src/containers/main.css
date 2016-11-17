@@ -1,9 +1,12 @@
 .main {
+  /*min-width: 310px;*/
   max-width: 1000px;
   padding: 10px;
   margin: auto;
 }
 
+
+/* Top Navigation */
 nav {
   margin-bottom: 20px;
 }
@@ -23,16 +26,24 @@ nav {
   margin: 1px;
   padding: 10px;
   text-decoration: none;
-  background-color: cadetblue;
+  background-color: dodgerblue;
   color: #fff;
   border-radius: 5px;
+  transition: all 0.3s ease-out;
 }
 
 .item:hover {
-  background-color: dodgerblue;
+  background-color: mediumseagreen;
   /*transition: all .5s ease-in;*/
 }
 
 .item:active {
   background-color: mediumpurple;
+}
+
+@media screen and (max-width: 360px) {
+  .item {
+    padding: 5px;
+    transition: all 0.3s ease-out;
+  }
 }
