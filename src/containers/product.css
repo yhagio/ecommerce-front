@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  box-shadow: 0 0 10px #aaa;
+  /*box-shadow: 0 0 10px #aaa;*/
 }
 
 .imageBox {
@@ -27,6 +27,15 @@
   padding: 5px 5px 5px 10px;;
 }
 
+@media screen and (max-width: 600px) {
+  .productImageLarge {
+    margin: 10px auto;
+    max-width: 180px;
+    max-height: 240px;
+    transition: all 0.5s ease-out;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .imageBox,
   .details {
@@ -35,7 +44,15 @@
 
   .productImageLarge {
     max-width: 150px;
-    max-height: 250px;
+    max-height: 220px;
+    transition: all 0.5s ease-out;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .productImageLarge {
+    max-width: 120px;
+    max-height: 200px;
     transition: all 0.5s ease-out;
   }
 }
