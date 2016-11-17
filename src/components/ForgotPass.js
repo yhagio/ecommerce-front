@@ -13,7 +13,7 @@ export function SubmitButton (props) {
     return (
       <button
         action='submit'
-        className='formButton authButton'
+        className='formButton resetButton'
         role='button'>Reset Password</button>
     )
   }

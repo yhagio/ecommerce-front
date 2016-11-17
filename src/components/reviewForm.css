@@ -24,6 +24,7 @@
   width: 80px;
   height: 45px;
   font-size: 1em;
+  border: 1px solid #aaa;
 }
 
 .reviewSubmitBtn {

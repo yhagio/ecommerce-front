@@ -13,7 +13,7 @@ export default function Receipts (props) {
         className="receiptItem">
         <li>
           <h4 className="receiptTitle">{ receipt.get('description') }</h4>
-          <p className="receiptPrice">Price: <span>{ receipt.get('price') }</span></p>
+          <p className="receiptPrice">CA$<span>{ receipt.get('price') }</span></p>
         </li>
       </Link>    
     );

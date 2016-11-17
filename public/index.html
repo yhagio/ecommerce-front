@@ -47,52 +47,10 @@
       To create a production bundle, use `npm run build`.
     -->
 
-    <!-- 
-      https://stripe.com/docs/custom-form
-    -->
+    <!-- https://stripe.com/docs/custom-form -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript">        
       Stripe.setPublishableKey('pk_test_Xn5nWxjEXpqZ4SJQQs1cyB2K');
-
-      // var form = document.getElementById('payment-form');
-
-      // function stripeResponseHandler(status, response) {
-
-      //   if (response.error) { // Problem!
-
-      //     // Show the errors on the form:
-      //     form.querySelector('.payment-errors').innerHTML = response.error.message;
-
-      //     form.querySelector('.submit').setAttribute('disabled', false); // Re-enable submission
-
-      //   } else { // Token was created!
-
-      //     // Get the token ID:
-      //     var token = response.id;
-
-      //     // Insert the token ID into the form so it gets submitted to the server:
-      //     var input = document.createElement('input');
-      //     input.setAttribute('type', 'hidden');
-      //     input.setAttribute('name', 'stripeToken');
-      //     input.value = stripe;
-      //     form.appendChild(input);
-
-      //     // Submit the form:
-      //     form.submit();
-      //   }
-      // };
-
-      // form.submit(function(event) {
-      //   console.log('EVENT', event)
-      //   // Disable the submit button to prevent repeated clicks:
-      //   form.querySelector('.submit').setAttribute('disabled', true);
-
-      //   // Request a token from Stripe:
-      //   Stripe.card.createToken(form, stripeResponseHandler);
-
-      //   // Prevent the form from being submitted:
-      //   return false;
-      // });
     </script>
   </body>
 </html>
