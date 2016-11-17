@@ -25,7 +25,6 @@
 
 .formInput {
   font-size: 1.1em;
-  /*width: 300px;*/
   width: 100%;
   height: 45px;
   padding: 0 0 0 3px;
@@ -52,6 +51,7 @@
   color: #ff0000;
 }
 
+/* Forgot Password */
 .resetButton {
   width: 150px;
   background-color: darkorange; 

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as usersActions from '../redux/User';
 import * as signinActions from '../redux/Signin';
-import Signin from '../components/Signin';
+import Signin from '../components/Auth/Signin';
 
 class SigninContainer extends Component {
   render() {

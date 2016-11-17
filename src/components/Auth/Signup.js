@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import './signup-signin.css';
+import './auth.css';
 
 export function SubmitButton (props) {
   if (
+    props.firstNameError ||
+    props.lastNameError ||
     props.emailError ||
     props.passwordError
   ) {
@@ -19,16 +20,18 @@ export function SubmitButton (props) {
       <button
         action='submit'
         className='formButton authButton'
-        role='button'>Sign in</button>
+        role='button'>Sign up</button>
     )
   }
 }
 
-export default function Signin (props) {
+export default function Signup (props) {
   function handleFormSubmit(e) {
     e.preventDefault();
 
-    return props.signinUser({
+    return props.signupUser({
+      firstName: props.firstName,
+      lastName: props.lastName,
       email: props.email,
       password: props.password
     });
@@ -40,8 +43,8 @@ export default function Signin (props) {
         <span className="labeltitle">Email</span><br />
         <span className='errorMessage'>{ props.emailError }</span>
         <input
-          id='signInEmail'
-          name='signInEmail'
+          id='signUpEmail'
+          name='signUpEmail'
           className='formInput'
           type='email'
           placeholder='Email ...'
@@ -52,11 +55,39 @@ export default function Signin (props) {
       </label>
 
       <label className='labeled'>
+        <span className="labeltitle">First Name</span><br />
+        <span className='errorMessage'>{ props.firstNameError }</span>
+        <input
+          id='signUpFirstName'
+          name='signUpFirstName'
+          className='formInput'
+          type='text'
+          placeholder='First Name ...'
+          onChange={ (e) => props.updateFirstName(e.target.value)}
+          onBlur={ (e) => props.validateFirstName(e.target.value) }
+          required={ true } />
+      </label>
+
+      <label className='labeled'>
+        <span className="labeltitle">Last Name</span><br />
+        <span className='errorMessage'>{ props.lastNameError }</span>
+        <input
+          id='signUpLastName'
+          name='signUpLastName'
+          className='formInput'
+          type='text'
+          placeholder='Last Name ...'
+          onChange={ (e) => props.updateLastName(e.target.value)}
+          onBlur={ (e) => props.validateLastName(e.target.value) }
+          required={ true } />
+      </label>
+
+      <label className='labeled'>
         <span className="labeltitle">Password</span><br />
         <span className='errorMessage'>{ props.passwordError }</span>
         <input
-          id='signInPassword'
-          name='signInPassword'
+          id='signUpPassword'
+          name='signUpPassword'
           className='formInput'
           type='password'
           placeholder='Secure Password ...'
@@ -68,34 +99,46 @@ export default function Signin (props) {
       <br />
       <SubmitButton
         emailError={ props.emailError }
-        passwordError={ props.passwordError } /><br />
+        passwordError={ props.passwordError }
+        firstNameError={ props.firstNameError }
+        lastNameError={ props.lastNameError } /><br />
 
       <p className='formError'>{ props.error }</p>
-      <Link to='/forgot-password'>forgot password</Link>
+
     </form>
   );
 }
 
 const { func, string } = PropTypes;
 
-Signin.propTypes = {
-  signinUser: func.isRequired,
+Signup.propTypes = {
+  signupUser: func.isRequired,
   error: string.isRequired,
 
+  firstName: string.isRequired,
+  lastName: string.isRequired,
   email: string.isRequired,
   password: string.isRequired,
 
+  firstNameError: string.isRequired,
+  lastNameError: string.isRequired,
   emailError: string.isRequired,
   passwordError: string.isRequired,
 
   updateEmail: func.isRequired,
+  updateFirstName: func.isRequired,
+  updateLastName: func.isRequired,
   updatePassword: func.isRequired,
   
   validateEmail: func.isRequired,
+  validateFirstName: func.isRequired,
+  validateLastName: func.isRequired,
   validatePassword: func.isRequired,
 }
 
 SubmitButton.propTypes = {
+  firstNameError: string.isRequired,
+  lastNameError: string.isRequired,
   emailError: string.isRequired,
   passwordError: string.isRequired,
 };

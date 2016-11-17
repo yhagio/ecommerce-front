@@ -1,0 +1,47 @@
+/***************
+ Top Navigation 
+ ***************/
+nav {
+  margin: 0 auto 20px;
+}
+
+.right {
+  float: right;
+}
+
+.navBar {
+  align-items: center;
+  padding: 10px;
+}
+
+.item {
+  display: inline-block;
+  margin: 1px;
+  padding: 10px;
+  text-decoration: none;
+  background-color: dodgerblue;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease-out;
+}
+
+.item:hover {
+  background-color: mediumseagreen;
+}
+
+.item:active {
+  background-color: mediumpurple;
+}
+
+@media screen and (max-width: 360px) {
+  .item {
+    padding: 5px;
+    transition: all 0.3s ease-out;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .item {
+    margin: 5px;
+  }
+}

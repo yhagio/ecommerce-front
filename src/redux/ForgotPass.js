@@ -58,14 +58,12 @@ export function submitEmail (email) {
   return function (dispatch) {
     return axios.post(`${ROOT_URL}/api/users/reset-password`, email)
       .then((res) => {
-        console.log('NEW PASS!! ', res);
         dispatch(resetPasswordSuccess(res.data));
         return setTimeout(() => {
           dispatch(clearMessage());
         }, 5000);
       })
       .catch((err) => {
-        console.dir(err);
         let error = 'Not Purcached.';
         if (err.response && err.response.data && err.response.data) {
           error = err.response.data;

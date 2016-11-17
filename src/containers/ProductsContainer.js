@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as productsActions from '../redux/Products';
-import Products from '../components/Products';
-import './products.css';
+import Products from '../components/Products/Products';
 
 class ProductsContainer extends Component {
   componentDidMount() {

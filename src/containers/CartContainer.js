@@ -3,8 +3,7 @@ import { List } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as cartActions from '../redux/Cart';
-import Cart from '../components/Cart';
-import './cart.css';
+import Cart from '../components/Cart/Cart';
 
 class CartContainer extends Component {
   componentDidMount() {

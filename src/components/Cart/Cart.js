@@ -2,7 +2,8 @@
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
 import './card.css';
-import productImage from './product.jpeg';
+import './cart.css';
+import productImage from '../product.jpeg';
 
 export default function Cart (props) {
   let cartList = [];
@@ -93,20 +94,13 @@ export default function Cart (props) {
       <ul className="cartList">
         { cartList }
       </ul>
-      {/* 
-      <div className="right">
-        <p className="">Total: ${ total }</p>
-        <div className="">
-          <button className="payButton">Pay</button>
-        </div>
-      </div>
-      */}
 
       { total > 1
       ? <form onSubmit={ submitForm } id="payment-form" className="cardForm">
         <span className="payment-errors"></span>
+        <h4 className="checkoutTitle">Checkout</h4>
 
-        {/*<div className="formRow">
+        {/*<div className="hidden">
           <label>
             <span>Amount Total ($)</span>
             <input

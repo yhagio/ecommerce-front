@@ -1,7 +1,6 @@
 .cartContainer {
   max-width: 800px;
   margin: auto;
-  /*margin: 0 0 70px 0;*/
   padding: 10px;
   overflow: hidden;
 }

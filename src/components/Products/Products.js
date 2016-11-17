@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { List } from 'immutable';
+
+import './products.css';
 // http://lorempixel.com/g/120/150
-import productSmall from './productSmall.jpeg';
+import productSmall from '../productSmall.jpeg';
 
 export default function Products (props) {
   let productList = [];

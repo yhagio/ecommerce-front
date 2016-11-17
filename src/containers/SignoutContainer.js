@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Signout from '../components/Signout';
+import Signout from '../components/Auth/Signout';
 import { signoutUser } from '../redux/User';
 
 class SignoutContainer extends Component{

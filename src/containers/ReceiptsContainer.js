@@ -3,7 +3,7 @@ import { List } from 'immutable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as receiptsActions from '../redux/Receipts';
-import Receipts from '../components/Receipts';
+import Receipts from '../components/Receipts/Receipts';
 
 class ReceiptsContainer extends Component{
   componentDidMount() {

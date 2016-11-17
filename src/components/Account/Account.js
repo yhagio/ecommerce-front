@@ -48,8 +48,8 @@ export default function Account (props) {
             <span className="labeltitle">Email</span><br />
             <span className='errorMessage'>{ props.emailError }</span>
             <input
-              id='signUpEmail'
-              name='signUpEmail'
+              id='updateEmail'
+              name='updateEmail'
               className='formInput'
               type='email'
               placeholder='Email ...'
@@ -63,8 +63,8 @@ export default function Account (props) {
             <span className="labeltitle">First Name</span><br />
             <span className='errorMessage'>{ props.firstNameError }</span>
             <input
-              id='signUpFirstName'
-              name='signUpFirstName'
+              id='updateFirstName'
+              name='updateFirstName'
               className='formInput'
               type='text'
               placeholder='First Name ...'
@@ -78,8 +78,8 @@ export default function Account (props) {
             <span className="labeltitle">Last Name</span><br />
             <span className='errorMessage'>{ props.lastNameError }</span>
             <input
-              id='signUpLastName'
-              name='signUpLastName'
+              id='updateLastName'
+              name='updateLastName'
               className='formInput'
               type='text'
               placeholder='Last Name ...'

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import ReviewForm from './ReviewForm';
-import { getFormattedDate } from '../helpers/utils';
-// import './product.css';
+import ReviewForm from '../ReviewForm/ReviewForm';
+import { getFormattedDate } from '../../helpers/utils';
+import './product.css';
 // Image from: http://loremflickr.com/250/320
-import productImage from './product.jpeg';
+import productImage from '../product.jpeg';
 
 export default function Product (props) {
   const token = localStorage.getItem('token');

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/Navigation/Navigation';
 import './main.css';
 
 class MainContainer extends Component {

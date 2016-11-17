@@ -104,7 +104,6 @@ export function submitReview (productId, review) {
   return function (dispatch) {
     axios.post(`${ROOT_URL}/api/products/${productId}/reviews`, review, setHeaders())
       .then((res) => {
-        // console.log('NEW REVIEW LIST\n', res.data);
         dispatch(submittedSuccessfully());
         return window.location.pathname = `products/${productId}`;
       })
@@ -119,11 +118,9 @@ export function submitReview (productId, review) {
 }
 
 export function deleteReview (productId) {
-  // console.log(productId);
   return function (dispatch) {
     axios.delete(`${ROOT_URL}/api/products/${productId}/reviews`, setHeaders())
       .then((res) => {
-        // console.log('DELETED REVIEW \n', res);
         dispatch(deletionSuccess());
         return window.location.pathname = `products/${productId}`;
       })

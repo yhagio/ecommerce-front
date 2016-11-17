@@ -32,11 +32,9 @@ export function fetchReceipts (id) {
     dispatch(fetchingReceipts());
     return axios.get(`${ROOT_URL}/api/account/receipts`, setHeaders())
       .then((res) => {
-        // console.log('Receipts: ', res.data);
         return dispatch(fetchingReceiptsSuccess(res.data));
       })
       .catch((err) => {
-        // console.dir(err);
         let error = 'No receipts.';
         if (err.response && err.response.data && err.response.data) {
           error = err.response.data;

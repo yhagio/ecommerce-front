@@ -1,10 +1,16 @@
 /* Card Form */
 .cardForm {
   border: 1px solid #aaa;
-  border-radius: 10px;
+  border-radius: 30px;
   max-width: 340px;
   margin: auto;
   padding: 10px;
+}
+
+.checkoutTitle {
+  line-height: 0;
+  text-align: center;
+  color: #777;
 }
 
 /* For Screen Readers only */
@@ -19,7 +25,6 @@
 
 .formRow {
   display: block;
-  /*border: 1px solid green;*/
   height: 40px;
   font-size: 1em;
   color: #444;
@@ -28,9 +33,12 @@
 }
 
 .expCvcRow {
-  max-width: 242px;
+  /*max-width: 242px;
   margin: auto;
-  padding-left: 25px; 
+  padding-left: 25px; */
+  max-width: 210px;
+  margin: auto;
+  padding-left: 9px;
 }
 
 .expRow {
@@ -68,13 +76,13 @@
 
 .exp {
   margin-left: 5px;
-  width: 45px;
+  /*width: 45px;*/
   border: 0;
   padding-left: 5px; 
 }
 
 .cvc {
-  margin-left: 5px;
+  margin-left: 4px;
   width: 85px;
 }
 

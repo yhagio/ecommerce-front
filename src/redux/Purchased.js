@@ -36,7 +36,6 @@ export function fetchPurchasedProduct (id) {
         return dispatch(fetchingProductSuccess(res.data));
       })
       .catch((err) => {
-        // console.dir(err);
         let error = 'Not Purcached.';
         if (err.response && err.response.data && err.response.data) {
           error = err.response.data;

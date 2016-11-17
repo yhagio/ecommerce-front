@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ForgotPass from '../components/ForgotPass';
+import ForgotPass from '../components/Auth/ForgotPass';
 import * as forgotpassActions from '../redux/ForgotPass';
 import './main.css';
 

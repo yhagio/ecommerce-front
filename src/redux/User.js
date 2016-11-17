@@ -56,7 +56,6 @@ const initialState = fromJS({
   error: '',
   isAuthenticated: false,
   authedUser: {},
-  // purchasedProductIds: [],
 });
 
 // Users reducer
@@ -123,7 +122,6 @@ export function signupUser ({firstName, lastName, email, password}) {
         // Update the state (authenticated)
         dispatch(authenticateUser());
         // Save JWT Token in localStorage
-        // console.log('Authed ', res.data);
         localStorage.setItem('token', res.data.token);
         // Redirect user after authenticated
         dispatch(fetchingUserSuccess(res.data.user));

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as accountActions from '../redux/Account';
-import Account from '../components/Account';
+import Account from '../components/Account/Account';
 
 class AccountContainer extends Component {
   componentDidMount() {

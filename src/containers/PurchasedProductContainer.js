@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as purchasedActions from '../redux/Purchased';
-import Purchased from '../components/Purchased';
+import Purchased from '../components/Purchased/Purchased';
 
 class PurchasedProductContainer extends Component{
   componentDidMount() {

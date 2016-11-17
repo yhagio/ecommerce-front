@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './auth.css';
 
 export function SubmitButton (props) {
   if (props.emailError) {
