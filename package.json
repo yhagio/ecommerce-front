@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.7.0"
+    "nock": "^9.0.2",
+    "react-scripts": "0.7.0",
+    "redux-mock-store": "^1.2.1"
   },
   "dependencies": {
     "axios": "^0.15.2",
