@@ -19,3 +19,7 @@
 - [ ] Search bar (title, description)
 - [ ] Filter by category and price
 - [ ] Admin page, analytics, product edit, etc
+
+#### Deployment
+
+URL: https://ecomm-71311.firebaseapp.com
