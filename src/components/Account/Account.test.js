@@ -1,7 +1,7 @@
 import React from 'react';
 import { Map } from 'immutable';
 import { shallow } from 'enzyme';
-import Account from './Account';
+import Account, { SubmitButton } from './Account';
 
 describe('[Component Account]', () => {
   it('displays "Loading ..." when it is still fetching', () => {
@@ -113,5 +113,48 @@ describe('[Component Account]', () => {
     let wrapper = shallow(AccountComponent);
     wrapper.find('#updateFirstName').simulate('change', {target: {value: 'Bobby'}});
     expect(updateFirstName).toHaveBeenCalledWith('Bobby');
+  });
+
+  it('display "Not ready" if form has errors', () => {
+    const SubmitButtonComponent
+      = <SubmitButton 
+          firstNameError='some error'
+          lastNameError=''
+          emailError='' />
+    let wrapper = shallow(SubmitButtonComponent);
+    expect(wrapper.find('button').text()).toEqual('Not ready');
+  });
+
+  it('should be able to submit the form', () => {
+    const updateUserFn = jest.fn();
+
+    const user = Map({
+      first_name: 'Alicia',
+      last_name: 'Vikander',
+      email: 'alice@cc.cc',
+    });
+
+    const AccountComponent
+      = <Account 
+          updateUser={ updateUserFn }
+          isFetching={false}
+          message=''
+          error=''
+          user={ user }
+          updateFirstName={jest.fn()}
+          updateLastName={jest.fn()}
+          updateEmail={jest.fn()}
+          validateEmail={jest.fn()}
+          validateFirstName={jest.fn()}
+          validateLastName={jest.fn()}
+          firstNameError=''
+          lastNameError=''
+          emailError=''
+          email='bob@cc.cc'
+          firstName='Bob'
+          lastName='Smith' />
+    let wrapper = shallow(AccountComponent);
+    wrapper.find('form').simulate('submit', { preventDefault() {} });
+    expect(updateUserFn).toHaveBeenCalledWith({ first_name: 'Bob', last_name: 'Smith', email: 'bob@cc.cc' });
   });
 });
