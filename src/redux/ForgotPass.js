@@ -24,10 +24,10 @@ export function warnEmailError (emailError) {
   };
 }
 
-export function resetPasswordSuccess(message) {
+export function resetPasswordSuccess() {
   return {
     type: RESET_PASS_SUCCESS,
-    message
+    message: 'New password was sent to your email.'
   }
 }
 
@@ -58,13 +58,13 @@ export function submitEmail (email) {
   return function (dispatch) {
     return axios.post(`${ROOT_URL}/api/users/reset-password`, email)
       .then((res) => {
-        dispatch(resetPasswordSuccess(res.data));
+        dispatch(resetPasswordSuccess());
         return setTimeout(() => {
           dispatch(clearMessage());
         }, 5000);
       })
       .catch((err) => {
-        let error = 'Not Purcached.';
+        let error = 'Could not reset the password or email not found.';
         if (err.response && err.response.data && err.response.data) {
           error = err.response.data;
         }
