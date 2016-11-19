@@ -2,8 +2,11 @@
 
 Deployed URL: https://ecomm-71311.firebaseapp.com/
 
+Screenshot
 
 ![Screenshot](/scr.png)
+
+---
 
 ### Tech stack
 
@@ -21,3 +24,14 @@ Deployed URL: https://ecomm-71311.firebaseapp.com/
 Used Node.js, Express, PostgreSQL, Sequelize, JSON Web Token
 
 Back-End Repo URL: https://github.com/yhagio/ecommerce-backend-api
+
+### Run locally
+
+Follow the steps in Back-End API to run the Back-End first
+
+Then run Front-End
+```
+git clone git@github.com:yhagio/ecommerce-front.git ef
+cd ef && npm i 
+npm run start
+```
