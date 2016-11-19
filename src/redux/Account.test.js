@@ -15,6 +15,9 @@ global.localStorage = {
   }
 };
 
+/******************************
+ * Redux - Account - Actions
+ ******************************/
 describe('[Redux - Account] actions', () => {
   it('should create an action to update first name', () => {
     const firstName = 'Alicia';
@@ -112,6 +115,9 @@ describe('[Redux - Account] actions', () => {
   });
 });
 
+/******************************
+ * Redux - Account - Reducers
+ ******************************/
 describe('[Redux - Account] reducers', () => {
   it('should return the initial state', () => {
     expect(
@@ -384,6 +390,9 @@ describe('[Redux - Account] reducers', () => {
 
 });
 
+/************************************
+ * Redux - Account - Action Creators
+ ************************************/
 describe('[Redux - Account] action creators - fetchUser()', () => {
   afterEach(() => {
     nock.cleanAll()
@@ -430,14 +439,80 @@ describe('[Redux - Account] action creators - fetchUser()', () => {
       .catch(() => {
         expect(store.getActions()).toEqual(expectedActions2)
       });
-  })
+  });
 });
 
-describe.skip('[Redux - Account] action creators - updateUser()', () => {
-  it('creates FETCHING_ACCOUNT_USER_SUCCESS if successfuly updated the user')
-  it('creates FETCHING_ACCOUNT_USER_FAILURE if failed to update the user')
+describe('[Redux - Account] action creators - updateUser()', () => {
+  afterEach(() => {
+    nock.cleanAll()
+  });
+
+  // Need fake user logged in
+  it('creates FETCHING_ACCOUNT_USER_SUCCESS if successfuly updated the user', () => {
+    const userObject = {
+      first_name: 'David',
+      last_name: 'Smith',
+      email: 'david@cc.cc'
+    };
+
+    nock(ROOT_URL)
+      .post('/api/users', { firstName: 'Alice', lastName: 'Smith', email: 'alice@cc.cc', password: 'FakePass!12' })
+      .reply(200, {
+        token: 'RandomToken123!',
+        user: {
+          first_name: 'Alice',
+          last_name: 'Smith',
+          email: 'alice@cc.cc'
+        }
+      });
+
+    // Delay it a little ot make sure user is signed in
+    // before sending update
+    setTimeout(() => {
+      nock(ROOT_URL)
+        .put('/api/users/account', userObject)
+        .reply(200, { data: userObject });
+
+      const expectedActions = [
+        { type: Account.UPDATED_MESSAGE, message: 'Updated!' },
+        { type: Account.CLEAR_UPDATED_MESSAGE },
+        { type: Account.FETCHING_ACCOUNT_USER_SUCCESS, user: userObject }
+      ];
+
+      const store = mockStore({ });
+
+      return store.dispatch(Account.updateUser(userObject))
+        .then(res => expect(store.getActions()).toEqual(expectedActions))
+    }, 100);
+
+  });
+
+  it('creates FETCHING_ACCOUNT_USER_FAILURE if failed to update the user', () => {
+    const userObject = {
+      first_name: 'David',
+      last_name: 'Smith',
+      email: 'david@cc.cc'
+    };
+
+    nock(ROOT_URL)
+      .put('/api/users/account', userObject)
+      .reply(400, { data: userObject });
+
+    const expectedActions = [
+      { type: Account.FETCHING_ACCOUNT_USER_FAILURE, error: 'Could not update.' }
+    ];
+
+    const store = mockStore({ });
+
+    return store.dispatch(Account.updateUser(userObject))
+      .then()
+      .catch(err => expect(store.getActions()).toEqual(expectedActions));
+  });
 });
 
+/******************************
+ * Redux - Account - Validations
+ ******************************/
 describe('[Validations] validateEmail()', () => {
   it('should warn if email is less than 4 characters', () => {
     const email = 'aa.';
