@@ -1,5 +1,13 @@
 ### Simple Ecommerce Front-End
 
+[![travis build](https://img.shields.io/travis/yhagio/ecommerce-front.svg?style=flat-square)](https://travis-ci.org/yhagio/ecommerce-front)
+
+## Browsers support <sub><sup><sub><sub>made by <a href="https://godban.github.io">godban</a></sub></sub></sup></sub>
+
+| [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png" alt="Chrome" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome |
+| --------- |
+| last 2 versions
+
 Deployed URL: https://ecomm-71311.firebaseapp.com/
 
 Screenshot
