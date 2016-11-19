@@ -59,6 +59,7 @@ export function successfullyPaid () {
   };
 }
 
+// Action Creators
 export function addToCart (id) {
   return function (dispatch) {
     return axios.post(`${ROOT_URL}/api/cart`, { id }, setHeaders())
@@ -135,6 +136,7 @@ const initialState = fromJS({
   message: '',
 });
 
+// Reducers
 export default function cart (state = initialState, action) {
   switch (action.type) {
 

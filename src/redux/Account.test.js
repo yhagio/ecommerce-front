@@ -449,6 +449,7 @@ describe('[Redux - Account] action creators - updateUser()', () => {
 
   // Need fake user logged in
   it('creates FETCHING_ACCOUNT_USER_SUCCESS if successfuly updated the user', () => {
+    // Create a new user to let him logged-in first
     const userObject = {
       first_name: 'David',
       last_name: 'Smith',
