@@ -498,7 +498,7 @@ describe('[Redux - Account] action creators - updateUser()', () => {
 
     nock(ROOT_URL)
       .put('/api/users/account', userObject)
-      .reply(400, { data: userObject });
+      .reply(400);
 
     const expectedActions = [
       { type: Account.FETCHING_ACCOUNT_USER_FAILURE, error: 'Could not update.' }

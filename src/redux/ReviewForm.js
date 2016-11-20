@@ -102,16 +102,16 @@ export default function reviewFormReducer (state = initialState, action) {
 // Handlers
 export function submitReview (productId, review) {
   return function (dispatch) {
-    axios.post(`${ROOT_URL}/api/products/${productId}/reviews`, review, setHeaders())
+    return axios.post(`${ROOT_URL}/api/products/${productId}/reviews`, review, setHeaders())
       .then((res) => {
         dispatch(submittedSuccessfully());
         return window.location.pathname = `products/${productId}`;
       })
       .catch((err) => {
         let error = 'Review submission failed.';
-        if (err.response && err.response.data && err.response.data.error) {
-          error = err.response.data.error;
-        }
+        // if (err.response && err.response.data && err.response.data.error) {
+        //   error = err.response.data.error;
+        // }
         return dispatch(submissionError(error));
       });
   };
@@ -119,16 +119,16 @@ export function submitReview (productId, review) {
 
 export function deleteReview (productId) {
   return function (dispatch) {
-    axios.delete(`${ROOT_URL}/api/products/${productId}/reviews`, setHeaders())
+    return axios.delete(`${ROOT_URL}/api/products/${productId}/reviews`, setHeaders())
       .then((res) => {
         dispatch(deletionSuccess());
         return window.location.pathname = `products/${productId}`;
       })
       .catch((err) => {
         let error = 'Review deletion failed.';
-        if (err.response && err.response.data && err.response.data.error) {
-          error = err.response.data.error;
-        }
+        // if (err.response && err.response.data && err.response.data.error) {
+        //   error = err.response.data.error;
+        // }
         return dispatch(deletionError(error));
       });
   };
