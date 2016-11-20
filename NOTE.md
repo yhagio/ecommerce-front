@@ -1,5 +1,5 @@
 #### Work in progress
-- [ ] Testing (Jest + Enzyme)
+- [ ] HOLD: Test for successful path of redux after promise (axio(...).then())
 - [ ] Offline Capability
 - [ ] Accessibility
 - [ ] Documentation + Screenshot
