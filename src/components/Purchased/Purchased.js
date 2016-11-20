@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import './purchased.css';
@@ -15,3 +15,9 @@ export default function Purchased (props) {
         <Link to={`/products/${ props.product.get('product_id')}`}>Add Review / Go to product page</Link>
       </div>;
 }
+
+Purchased.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+  product: PropTypes.object.isRequired,
+};
