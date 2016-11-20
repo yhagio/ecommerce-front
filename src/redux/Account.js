@@ -131,9 +131,9 @@ export function fetchUser () {
       .then((res) => dispatch(fetchingUserSuccess(res.data)))
       .catch((err) => {
         let error = 'Could not get the user infomation.';
-        if (err.response && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(fetchingUserError(error))
       });
   };
@@ -151,9 +151,9 @@ export function updateUser (userObject) {
       })
       .catch((err) => {
         let error = 'Could not update.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(fetchingUserError(error))
       });
   };

@@ -469,7 +469,7 @@ describe('[Redux - Account] action creators - updateUser()', () => {
 
     // Delay it a little ot make sure user is signed in
     // before sending update
-    setTimeout(() => {
+    // setTimeout(() => {
       nock(ROOT_URL)
         .put('/api/users/account', userObject)
         .reply(200, { data: userObject });
@@ -484,7 +484,8 @@ describe('[Redux - Account] action creators - updateUser()', () => {
 
       return store.dispatch(Account.updateUser(userObject))
         .then(res => expect(store.getActions()).toEqual(expectedActions))
-    }, 100);
+        .catch(() => {});
+    // }, 100);
 
   });
 

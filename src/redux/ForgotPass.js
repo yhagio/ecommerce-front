@@ -65,9 +65,9 @@ export function submitEmail (email) {
       })
       .catch((err) => {
         let error = 'Could not reset the password or email not found.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(resetPasswordFailure(error));
       });
   }

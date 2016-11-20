@@ -198,9 +198,8 @@ describe('[Redux - ForgotPass] action creators - submitEmail()', () => {
       });
 
     // Delay it a little ot make sure user is signed in
-    // before sending update
     const email = { email: 'alice@cc.cc' };
-    setTimeout(() => {
+    // setTimeout(() => {
       nock(ROOT_URL)
         .post('/api/users/reset-password', email)
         .reply(200);
@@ -214,28 +213,27 @@ describe('[Redux - ForgotPass] action creators - submitEmail()', () => {
       
       return store.dispatch(ForgotPass.submitEmail(email))
         .then(res => expect(store.getActions()).toEqual(expectedActions))
-    }, 100);
+        .catch(() => {});
+    // }, 100);
   });
 
   it('failed to add a product to ForgotPass', () => {
     // Delay it a little ot make sure user is signed in
     // before sending update
     const email = { email: 'nonon@cc.cc' };
-    setTimeout(() => {
-      nock(ROOT_URL)
-        .post('/api/users/reset-password', email)
-        .reply(400);
+    nock(ROOT_URL)
+      .post('/api/users/reset-password', email)
+      .reply(400);
 
-      const expectedActions = [
-        { type: ForgotPass.RESET_PASS_FAILURE, error: 'Could not reset the password or email not found.' },
-      ];
+    const expectedActions = [
+      { type: ForgotPass.RESET_PASS_FAILURE, error: 'Could not reset the password or email not found.' },
+    ];
 
-      const store = mockStore({ });
-      
-      return store.dispatch(ForgotPass.submitEmail(email))
-        .then()
-        .catch(err => expect(store.getActions()).toEqual(expectedActions))
-    }, 100);
+    const store = mockStore({ });
+    
+    return store.dispatch(ForgotPass.submitEmail(email))
+      .then()
+      .catch(err => expect(store.getActions()).toEqual(expectedActions))
   });
 });
 

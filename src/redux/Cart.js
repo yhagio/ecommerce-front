@@ -71,9 +71,9 @@ export function addToCart (id) {
       })
       .catch((err) => {
         let error = 'Could not add the product.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         dispatch(fetchingCartError(error));
         return setTimeout(() => {
           dispatch(clearMessage());
@@ -89,9 +89,9 @@ export function fetchCart () {
       .then(res => dispatch(fetchingCartSuccess(res.data[0])))
       .catch((err) => {
         let error = 'Could not get the cart infomation.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(fetchingCartError(error));
       });
   };
@@ -104,9 +104,9 @@ export function deletefromCart (id) {
       .then(res => dispatch(fetchingCartSuccess(res.data[0])))
       .catch((err) => {
         let error = 'Could not remove the product.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(fetchingCartError(error));
       });
   };
@@ -121,9 +121,9 @@ export function payTotal (cartObject) {
       })
       .catch(err => {
         let error = 'Could not purchase them.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(failedToPay(error));
       });
   };

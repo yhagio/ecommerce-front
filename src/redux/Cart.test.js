@@ -255,9 +255,8 @@ describe('[Redux - Cart] action creators - addToCart()', () => {
       });
 
     // Delay it a little ot make sure user is signed in
-    // before sending update
     const id = 3;
-    setTimeout(() => {
+    // setTimeout(() => {
       nock(ROOT_URL)
         .put('/api/cart', { id })
         .reply(200);
@@ -271,51 +270,26 @@ describe('[Redux - Cart] action creators - addToCart()', () => {
       
       return store.dispatch(Cart.addToCart(id))
         .then(res => expect(store.getActions()).toEqual(expectedActions))
-    }, 100);
+        .catch(() => {});
+    // }, 100);
   });
 
   it('failed to add a product to cart', () => {
-    afterEach(() => {
-      nock.cleanAll()
-    });
-    // Create a new user to let him logged-in first
-    const userObject = {
-      first_name: 'David',
-      last_name: 'Smith',
-      email: 'david@cc.cc'
-    };
-
-    nock(ROOT_URL)
-      .post('/api/users', { firstName: 'Alice', lastName: 'Smith', email: 'alice@cc.cc', password: 'FakePass!12' })
-      .reply(200, {
-        token: 'RandomToken123!',
-        user: {
-          id: 10,
-          first_name: 'Alice',
-          last_name: 'Smith',
-          email: 'alice@cc.cc'
-        }
-      });
-
-    // Delay it a little ot make sure user is signed in
-    // before sending update
     const id = 3;
-    setTimeout(() => {
-      nock(ROOT_URL)
-        .put('/api/cart', { id })
-        .reply(400);
+    nock(ROOT_URL)
+      .put('/api/cart', { id })
+      .reply(400);
 
-      const expectedActions = [
-        { type: Cart.FETCHING_CART_FAILURE, error: 'Added to cart.' },
-        { type: Cart.CLEAR_ERROR_MESSAGE }
-      ];
+    const expectedActions = [
+      { type: Cart.FETCHING_CART_FAILURE, error: 'Added to cart.' },
+      { type: Cart.CLEAR_ERROR_MESSAGE }
+    ];
 
-      const store = mockStore({ });
-      
-      return store.dispatch(Cart.addToCart(id))
-        .then()
-        .catch(err => expect(store.getActions()).toEqual(expectedActions))
-    }, 100);
+    const store = mockStore({ });
+    
+    return store.dispatch(Cart.addToCart(id))
+      .then()
+      .catch(err => expect(store.getActions()).toEqual(expectedActions))
   });
 });
 
@@ -340,7 +314,7 @@ describe('[Redux - Cart] action creators - fetchCart()', () => {
     // Delay it a little ot make sure user is signed in
     // before sending update
     const cart = [{id: 1}, {id: 2}];
-    setTimeout(() => {
+    // setTimeout(() => {
       nock(ROOT_URL)
         .get('/api/users/Cart')
         .reply(200, { data: cart });
@@ -354,7 +328,8 @@ describe('[Redux - Cart] action creators - fetchCart()', () => {
 
       return store.dispatch(Cart.fetchCart())
         .then(res => expect(store.getActions()).toEqual(expectedActions))
-    }, 100);
+        .catch(() => {});
+    // }, 100);
 
   });
 
@@ -409,7 +384,7 @@ describe('[Redux - Cart] action creators - deletefromCart()', () => {
     // Delay it a little ot make sure user is signed in + added it to cart
     // before deleting it from the cart
     const cart = [{id: 1}, {id: 2}, {id: 1000}];
-    setTimeout(() => {
+    // setTimeout(() => {
       nock(ROOT_URL)
         .delete(`/api/cart/${id}`)
         .reply(200, { data: cart });
@@ -423,7 +398,8 @@ describe('[Redux - Cart] action creators - deletefromCart()', () => {
 
       return store.dispatch(Cart.deletefromCart(id))
         .then(res => expect(store.getActions()).toEqual(expectedActions))
-    }, 200);
+        .catch(() => {});
+    // }, 200);
 
   });
 
@@ -488,7 +464,7 @@ describe('[Redux - Cart] action creators - payTotal()', () => {
       purchaseList
     };
 
-    setTimeout(() => {
+    // setTimeout(() => {
       nock(ROOT_URL)
         .post(`/api/payTotal`, cartObject)
         .reply(200);
@@ -502,7 +478,8 @@ describe('[Redux - Cart] action creators - payTotal()', () => {
 
       return store.dispatch(Cart.payTotal(cartObject))
         .then(res => expect(store.getActions()).toEqual(expectedActions))
-    }, 200);
+        .catch(() => {});
+    // }, 200);
   });
 
   it('creates PAY_TOTAL_FAILURE when failed to pay total', () => {
