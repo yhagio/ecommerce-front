@@ -12,9 +12,10 @@ export const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE';
 export const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS';
 
 // Actions
-export function authenticateUser () {
+export function authenticateUser (user) {
   return {
-    type: AUTH_USER
+    type: AUTH_USER,
+    user
   };
 }
 
@@ -120,13 +121,13 @@ export function signupUser ({firstName, lastName, email, password}) {
       .then((res) => {
         // If request is correct
         // Update the state (authenticated)
-        dispatch(authenticateUser());
+        dispatch(authenticateUser(res.data.user));
         // Save JWT Token in localStorage
         localStorage.setItem('token', res.data.token);
         // Redirect user after authenticated
         dispatch(fetchingUserSuccess(res.data.user));
         // Redirect user to '/create-review' page
-        browserHistory.push('/account');
+        return browserHistory.push('/account');
       })
       .catch((err) => {
         // If request is incorrect
@@ -135,7 +136,7 @@ export function signupUser ({firstName, lastName, email, password}) {
         if (err.response && err.response.data && err.response.data.error) {
           error = err.response.data.error;
         }
-        dispatch(authenticationError(error));
+        return dispatch(authenticationError(error));
       });
   };
 }
@@ -146,12 +147,12 @@ export function signinUser ({email, password}) {
       .then((res) => {
         // If request is correct
         // Update the state (authenticated)
-        dispatch(authenticateUser());
+        dispatch(authenticateUser(res.data.user));
         // Save JWT Token in localStorage
         localStorage.setItem('token', res.data.token);
         // Redirect user after authenticated
         dispatch(fetchingUserSuccess(res.data.user));
-        browserHistory.push('/account');
+        return browserHistory.push('/account');
       })
       .catch((err) => {
         // If request is incorrect
@@ -160,7 +161,7 @@ export function signinUser ({email, password}) {
         if (err.response && err.response.data && err.response.data.error) {
           error = err.response.data.error;
         }
-        dispatch(authenticationError(error));
+        return dispatch(authenticationError(error));
       });
   };
 }
