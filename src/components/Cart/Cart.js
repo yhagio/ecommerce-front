@@ -39,13 +39,12 @@ export default function Cart (props) {
     )
   });
 
- function submitForm(e) {
+  function submitForm(e) {
     e.preventDefault();
 
     let form = document.getElementById('payment-form');
 
     function stripeResponseHandler(status, response) {
-
       if (response.error) { // Problem!
 
         // Show the errors on the form:
@@ -78,10 +77,8 @@ export default function Cart (props) {
     // form.addEventListener('submit', function(event) {
       // Disable the submit button to prevent repeated clicks:
       form.querySelector('.submit').setAttribute('disabled', true);
-
       // Request a token from Stripe:
       Stripe.card.createToken(form, stripeResponseHandler);
-
       // Prevent the form from being submitted:
       return false;
     // });
@@ -99,20 +96,6 @@ export default function Cart (props) {
       ? <form onSubmit={ submitForm } id="payment-form" className="cardForm">
         <span className="payment-errors"></span>
         <h4 className="checkoutTitle">Checkout</h4>
-
-        {/*<div className="hidden">
-          <label>
-            <span>Amount Total ($)</span>
-            <input
-              type="number"
-              id="cartTotal"
-              name="cartTotal"
-              className="totalAmt cardInput"
-              value={ total }
-              required={ true }
-              readOnly />
-          </label>
-        </div>*/}
 
         <div className="formRow">
           <label>

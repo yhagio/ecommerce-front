@@ -1,5 +1,4 @@
 import React from 'react';
-import { Map } from 'immutable';
 import { shallow } from 'enzyme';
 import ForgotPass, { SubmitButton } from './ForgotPass';
 
