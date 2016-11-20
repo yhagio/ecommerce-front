@@ -38,8 +38,8 @@ export default function ReviewForm (props) {
       <label className='labeled'>
         <span className="formTitle">Body</span><br />
         <textarea
-          id=''
-          name=''
+          id='reviewBodyText'
+          name='reviewBodyText'
           className='reviewTextArea'
           rows="3"
           placeholder='Your Review ...'
@@ -50,6 +50,7 @@ export default function ReviewForm (props) {
       <label className='labeled'>
         <span className="formTitle">Rating</span><br />
         <select
+          id="reviewRatingInput"
           className="reviewSelectRating"
           onChange={ (e) => props.updateReviewRating(e.target.value)}
           required={ true }  >
