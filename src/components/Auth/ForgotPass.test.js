@@ -86,6 +86,14 @@ describe('[Component ForgotPass]', () => {
     expect(wrapper.find('button').text()).toEqual('Not ready');
   });
 
+  it('display "Reset Password" if form has no error', () => {
+    const SubmitButtonComponent
+      = <SubmitButton 
+          emailError='' />
+    let wrapper = shallow(SubmitButtonComponent);
+    expect(wrapper.find('button').text()).toEqual('Reset Password');
+  });
+
   it('should be able to submit the form', () => {
     const submitEmailFn = jest.fn();
 
