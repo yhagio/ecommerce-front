@@ -33,9 +33,9 @@ export function fetchProducts () {
       .then((res) => dispatch(fetchingProductsSuccess(res.data)))
       .catch((err) => {
         let error = 'Could not get the product list.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(fetchingProductsError(error))
       });
   };
