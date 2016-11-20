@@ -1,5 +1,6 @@
 #### Work in progress
 - [ ] HOLD: Test for successful path of redux after promise (axio(...).then())
+- [ ] HOLD: CART component (Stripe part)
 - [ ] Offline Capability
 - [ ] Accessibility
 - [ ] Documentation + Screenshot
