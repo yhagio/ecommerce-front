@@ -37,9 +37,9 @@ export function fetchPurchasedProduct (id) {
       })
       .catch((err) => {
         let error = 'Not Purcached.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         dispatch(fetchingProductError(error))
         return browserHistory.push(`/products/${id}/`);
       });
