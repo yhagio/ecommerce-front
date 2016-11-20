@@ -13,6 +13,9 @@ global.localStorage = {
   getItem: function(key) {
     return 'SomeToken';
   },
+  setItem: function(key, value) {
+    return value;
+  },
   removeItem: function(key) {
     return undefined;
   }
@@ -296,6 +299,59 @@ describe('[Redux - Cart] action creators - signupUser()', () => {
   });
 });
 
-describe.skip('[Redux - Cart] action creators - signinUser()', () => {
+describe('[Redux - Cart] action creators - signinUser()', () => {
+  afterEach(() => {
+    nock.cleanAll()
+  });
 
+  it('successfully signin', () => {
+    const firstName = 'Alice';
+    const lastName = 'Smith';
+    const email = 'alice@cc.cc';
+    const password = 'Pass123!';
+
+    nock(ROOT_URL)
+      .post('/auth/signin')
+      .reply(200, {
+        data: {
+          token: 'someToken',
+          user: {
+            first_name: 'Alice',
+            last_name: 'Smith',
+            email: 'alice@cc.cc',
+          }
+        }
+      });
+
+    const expectedActions = [
+      { type: User.AUTH_USER, user: { firstName: 'Alice', last_name: 'Smith', email: 'alice@cc.cc' } },
+      { type: User.FETCHING_USER_SUCCESS, user: { firstName: 'Alice', last_name: 'Smith', email: 'alice@cc.cc' } }
+    ];
+
+    const store = mockStore({ });
+    
+    return store.dispatch(User.signinUser({ email, password }))
+      .then(res => expect(store.getActions()).toEqual(expectedActions))
+      .catch(() => {});
+  });
+
+  it('failed to signin', () => {
+    const userObj = {
+      first_name: 'Kevin'
+    };
+
+    nock(ROOT_URL)
+      .post('/auth/signin')
+      .reply(400);
+
+    const expectedActions = [
+      { type: User.AUTH_ERROR, error: 'Internal error occured.' },
+    ];
+
+    const store = mockStore({ });
+    
+    return store.dispatch(User.signinUser(userObj))
+      .then()
+      .catch(err => expect(store.getActions()).toEqual(expectedActions));
+  });
 });
