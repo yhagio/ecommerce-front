@@ -26,7 +26,7 @@ describe('[Redux - Products] actions', () => {
     expect(Products.fetchingProducts()).toEqual(expectedAction);
   });
 
-  it('should create an action when fetched a products', () => {
+  it('should create an action when fetched products', () => {
     const products = [{ id: 123, naem: 'some name'}];
     const expectedAction = {
       type: Products.FETCHING_PRODUCTS_SUCCESS,
@@ -35,7 +35,7 @@ describe('[Redux - Products] actions', () => {
     expect(Products.fetchingProductsSuccess(products)).toEqual(expectedAction);
   });
 
-  it('should create an action when failed to fetch a products', () => {
+  it('should create an action when failed to fetch products', () => {
     const error = 'Could not get the product list.';
     const expectedAction = {
       type: Products.FETCHING_PRODUCTS_FAILURE,
@@ -138,7 +138,7 @@ describe('[Redux - Products] action creators - fetchProducts()', () => {
       .catch(() => {});
   });
 
-  it('failed to fetch a products', () => {
+  it('failed to fetch products', () => {
     nock(ROOT_URL)
       .get('/api/productss/123')
       .reply(400);

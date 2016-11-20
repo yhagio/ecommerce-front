@@ -35,10 +35,10 @@ export function fetchReceipts (id) {
         return dispatch(fetchingReceiptsSuccess(res.data));
       })
       .catch((err) => {
-        let error = 'No receipts.';
-        if (err.response && err.response.data && err.response.data) {
-          error = err.response.data;
-        }
+        let error = 'Could not retrieve any receipts.';
+        // if (err.response && err.response.data && err.response.data) {
+        //   error = err.response.data;
+        // }
         return dispatch(fetchingReceiptsError(error))
       });
   };
