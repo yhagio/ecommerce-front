@@ -133,9 +133,9 @@ export function signupUser ({firstName, lastName, email, password}) {
         // If request is incorrect
         // Show user the error
         let error = 'Internal error occured.';
-        if (err.response && err.response.data && err.response.data.error) {
-          error = err.response.data.error;
-        }
+        // if (err.response && err.response.data && err.response.data.error) {
+        //   error = err.response.data.error;
+        // }
         return dispatch(authenticationError(error));
       });
   };
@@ -158,9 +158,9 @@ export function signinUser ({email, password}) {
         // If request is incorrect
         // Show user the error
         let error = 'Internal error occured.';
-        if (err.response && err.response.data && err.response.data.error) {
-          error = err.response.data.error;
-        }
+        // if (err.response && err.response.data && err.response.data.error) {
+        //   error = err.response.data.error;
+        // }
         return dispatch(authenticationError(error));
       });
   };

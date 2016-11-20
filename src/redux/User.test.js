@@ -232,3 +232,70 @@ describe('[Redux - Cart] action creators - signoutUser()', () => {
     }));
   });
 });
+
+describe('[Redux - Cart] action creators - signupUser()', () => {
+  afterEach(() => {
+    nock.cleanAll()
+  });
+
+  it('successfully signup', () => {
+    const firstName = 'Alice';
+    const lastName = 'Smith';
+    const email = 'alice@cc.cc';
+    const password = 'Pass123!';
+    const userObj = {
+      firstName,
+      lastName,
+      email,
+      password
+    };
+
+    nock(ROOT_URL)
+      .post('/api/users')
+      .reply(200, {
+        data: {
+          token: 'someToken',
+          user: {
+            first_name: 'Alice',
+            last_name: 'Smith',
+            email: 'alice@cc.cc',
+          }
+        }
+      });
+
+    const expectedActions = [
+      { type: User.AUTH_USER, user: { firstName: 'Alice', last_name: 'Smith', email: 'alice@cc.cc' } },
+      { type: User.FETCHING_USER_SUCCESS, user: { firstName: 'Alice', last_name: 'Smith', email: 'alice@cc.cc' } }
+    ];
+
+    const store = mockStore({ });
+    
+    return store.dispatch(User.signupUser(userObj))
+      .then(res => expect(store.getActions()).toEqual(expectedActions))
+      .catch(() => {});
+  });
+
+  it('failed to signup', () => {
+    const userObj = {
+      first_name: 'Kevin'
+    };
+
+    nock(ROOT_URL)
+      .post('/api/users')
+      .reply(400);
+
+    const expectedActions = [
+      { type: User.AUTH_ERROR, error: 'Internal error occured.' },
+    ];
+
+    const store = mockStore({ });
+    
+    return store.dispatch(User.signupUser(userObj))
+      .then()
+      .catch(err => expect(store.getActions()).toEqual(expectedActions));
+  });
+});
+
+describe.skip('[Redux - Cart] action creators - signinUser()', () => {
+
+});
