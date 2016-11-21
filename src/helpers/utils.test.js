@@ -58,7 +58,7 @@ describe('[Helpers] checkIfAuthenticated()', () => {
   });
 });
 
-describe('[Helpers] getFormattedDate(rawDate)', () => {
+describe.skip('[Helpers] getFormattedDate(rawDate)', () => {
   it('returns formatted date 1', () => {
     expect(getFormattedDate(1005019905043)).toEqual('Nov 05, 2001');
   });
